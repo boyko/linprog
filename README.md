@@ -12,4 +12,5 @@
 ## Software
 
 [Simple (graphical) solver](http://econometrics2018.s3-website.eu-central-1.amazonaws.com/courses/linprog-20192020/)
+
 [Solver](https://cbom.atozmath.com/CBOM/Simplex.aspx?q=sm)
