@@ -6,6 +6,11 @@
 
 [Тема 2](https://firebasestorage.googleapis.com/v0/b/uni-sofia.appspot.com/o/courses%2Flinprog-20192020%2Fassignments%2FPP_tema2.pdf?alt=media&token=7ac84201-2fd6-439c-b364-c343126610df)
 
+[Тема 3](https://firebasestorage.googleapis.com/v0/b/uni-sofia.appspot.com/o/courses%2Flinprog-20192020%2Fassignments%2FPP_tema3.pdf?alt=media&token=38f4fa99-93cc-412b-bcea-6e751b5debfb)
+
+[Тема 4](https://firebasestorage.googleapis.com/v0/b/uni-sofia.appspot.com/o/courses%2Flinprog-20192020%2Fassignments%2FPP_T4.pdf?alt=media&token=116041d9-effb-47de-bac3-06a4859117bf)
+
+
 [Berlin Airlift](https://firebasestorage.googleapis.com/v0/b/uni-sofia.appspot.com/o/courses%2Flinprog-20192020%2Fassignments%2FLuftBruecke.pdf?alt=media&token=c947656f-c0c8-4b43-9fc7-60c7c7783ed2)
 
 
