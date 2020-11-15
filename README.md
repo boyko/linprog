@@ -8,9 +8,16 @@
 
 [Berlin Airlift](https://firebasestorage.googleapis.com/v0/b/uni-sofia.appspot.com/o/courses%2Flinprog-20192020%2Fassignments%2FLuftBruecke.pdf?alt=media&token=c947656f-c0c8-4b43-9fc7-60c7c7783ed2)
 
-
 ## Software
 
 [Simple (graphical) solver](http://econometrics2018.s3-website.eu-central-1.amazonaws.com/courses/linprog-20192020/)
 
 [Solver](https://cbom.atozmath.com/CBOM/Simplex.aspx?q=sm)
+
+## Software
+
+За да видите записките от упражненията (в компилиран вид)
+
+[R download](https://cran.r-project.org/)
+
+[R Studio download](https://rstudio.com/products/rstudio/download/)
