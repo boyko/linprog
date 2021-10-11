@@ -1,0 +1,5 @@
+book_filename: "linprog"
+language:
+  ui:
+    chapter_name: "Част "
+delete_merged_file: true

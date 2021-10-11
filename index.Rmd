@@ -1,0 +1,250 @@
+--- 
+title: "Въведение в линейното програмиране"
+author: "Бойко Амаров"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+lang: BG
+documentclass: book
+# bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "Записки от упражнения по количествени методи в икономиката 2021-2020"
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Въведение в линейното програмиране
+
+## Софтуер
+
+В рамките на упражненията ще използваме `R` и R Studio Desktop за водене на
+записки повреме на упражненията. Това е техническо решение за целите на онлайн 
+обучението и не е част от изпита към лекцията.
+
+
+## Пример 1: Берлински въздушен мост {.smaller}
+
+След края на Втората световна война Германия е разделена на четири окупационни
+зони: Американска, Британска, Френска и Съветска. Берлин също така е разделен на
+четири зони, но достъпът до него по суша и по вода минава изцяло през 
+територията на Съветската окупационна зона.
+
+```{r, out.width = "300px", echo = FALSE, fig.cap="Окупационни зони в Германия след края на Втората световна война. Източник: Wikipedia."}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Deutschland_Besatzungszonen_8_Jun_1947_-_22_Apr_1949.svg/800px-Deutschland_Besatzungszonen_8_Jun_1947_-_22_Apr_1949.svg.png")
+```
+
+## История {.smaller}
+
+На 24-ти юни 1948 Съветският Съюз
+[блокира](https://en.wikipedia.org/wiki/Berlin_Blockade) достъпа до Западен
+Берлин, с което започва една от най-значимите конфронтации по време на 
+Студената война. Без достъп по суша или вода, западните съюзници започват да 
+снабдяват града по въздух (Берлински въздушен мост).
+
+```{r, out.width = "400px", echo = FALSE, fig.cap="Доставка на сол (река Хафел). Източник: Wikipedia."}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/1/10/Sunderland_201_Sqn_on_Havel_during_Berlin_Airlift_1948.jpg")
+```
+
+```{r, out.width = "400px", echo = FALSE, fig.cap="Приземяване на самолет C-54 (летище Темпелхоф). Източник: Wikipedia."}
+# knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/C-54landingattemplehof.jpg/630px-C-54landingattemplehof.jpg")
+```
+
+## Задача {.smaller}
+
+За по-просто нека да приемем, че доставките до Берлин се извършват с 
+два вида самолети: американски, които могат да поемат до 30 000 кубични фута товар ($\approx 849 m^3$),
+и британски самолети с капацитет до 20 000 кубични фута ($\approx 566 m^3$).
+
+Поради ограничния в инфраструктурата на ден могат да летят най-много 48 самолета
+(независимо от кой вид).
+
+За всеки полет на американски самолет има нужда от 
+16 души персонал, двойно повече от броя нужен за британските самолети. 
+Общо на разположение са 512 души на ден.
+
+
+Разходите за гориво и поддръжка на самолетите възлизат на 9000 долара за полет
+на американски самолет и на 5000 долара за полет на британски самолет.
+Поради бюджетни ограничения общите разходи не могат да надхвърлят 300 000
+долара.
+
+## Въпрос {.smaller}
+
+Колко британски и колко американски самолети да използва на ден въздушният мост,
+така че да достави до Берлин възможно най-голямо количество стоки?
+
+
+## Математически модел (1) {.smaller}
+
+Нека да означим с $x_1$ броя американски самолети и с $x_2$: броя британски 
+самолети
+
+$$
+\max 800 x_1 + 550 x_2 \text{ (целева функция, objective)}\\
+x_1 + x_2 \leq 48 \text{ (инфраструктура)} \\
+16 x_1 + 8 x_2 \leq 512 \text{ (персонал)} \\
+9 x_1 + 5 x_2 \leq 300 \text{ (бюджет)}
+$$
+Или същото, но записано с матрици:
+
+$$
+\max \underbrace{(800, 500)}_{b}\underbrace{\begin{pmatrix} x_1 \\ x_2 \end{pmatrix}}_{x} \\
+\underbrace{\begin{pmatrix}
+  1 & 1 \\
+  16 & 8 \\
+  9 & 5 \\
+\end{pmatrix}}_{A}
+\underbrace{\begin{pmatrix}
+  x_1 \\ 
+  x_2
+\end{pmatrix}}_{x} \leq
+\underbrace{\begin{pmatrix}
+  48\\
+  512\\
+  300
+\end{pmatrix}}_{r}
+$$
+
+## Математически модел (2)
+
+$$
+\max bx | Ax \leq r
+$$
+
+$$
+b = (800, 550)\\
+x = \begin{pmatrix}
+  x_1 \\ 
+  x_2
+\end{pmatrix},
+A = \begin{pmatrix}
+  1 & 1 \\
+  16 & 8 \\
+  9 & 5 \\
+\end{pmatrix},
+r = \begin{pmatrix}
+  48\\
+  512\\
+  300
+\end{pmatrix}
+$$
+
+## Допустимо множество (1)
+
+```{r}
+
+line_points <- tribble(
+  ~type, ~ x1, ~x2,
+  "инфраструктура", 0, 48 / 1,
+  "инфраструктура", 48 / 1, 0,
+  "персонал", 0, 512 / 8,
+  "персонал", 512 / 16, 0,
+  "бюджет", 0, 300 / 5,
+  "бюджет", 300 / 9, 0
+)
+
+line_points %>%
+  ggplot(aes(x = x1, y = x2, colour = type)) +
+    geom_point() +
+    geom_line() +
+    labs(
+      x = expression(paste(x[1], " (брой американски самолети)")),
+      y = expression(paste(x[2], " (брой американски самолети)")),
+      colour = "Ограничение"
+    )
+```
+
+## Допустимо множество (2)
+
+```{r}
+A <- matrix(c(
+  1, 1,
+  16, 8,
+  9, 5),
+  ncol = 2,
+  byrow = TRUE
+)
+b <- c(3, 2)
+r <- c(48, 512, 300)
+```
+
+```{r}
+gMOIP::plotPolytope(
+  A = A, 
+  b = r, 
+  obj = b, 
+  crit = "max", 
+  plotFeasible = TRUE,
+  labels = "coord",
+  plotFaces = TRUE) +
+  labs(
+    x = expression(paste(x[1], " (брой американски самолети)")),
+    y = expression(paste(x[2], " (брой британски самолети)"))
+  )
+```
+
+## Стойности на целевата функция във върховете {.smaller}
+
+```{r, echo = TRUE}
+# Връх (0, 0)
+3 * 0 + 2 * 0
+
+# Връх (32, 0)
+3 * 32 + 2 * 0
+
+# Връх (20, 24)
+3 * 20 + 2 * 24
+
+# Връх (15, 33)
+3 * 15 + 2 * 33
+
+# Връх (0, 48)
+3 * 0 + 2 * 48
+```
+
+```{r}
+# ggplot() +
+#   geom_abline(intercept = 22, slope = 1) +
+#   xlim(c(0, 2000)) +
+#   ylim(c(0, 2000))
+```
+
+## Графично решение {.small}
+
+```{r}
+gMOIP::plotPolytope(
+  A = A, 
+  b = r, 
+  obj = b, 
+  crit = "max", 
+  plotFeasible = TRUE, 
+  plotFaces = TRUE, 
+  labels = "coord",
+  plotOptimum = TRUE) +
+  labs(
+    x = expression(paste(x[1], " (брой американски самолети)")),
+    y = expression(paste(x[2], " (брой британски самолети)"))
+  )
+
+```
+
+## Решение с `lpSolve`
+
+```{r solve-lp, echo = TRUE}
+result <- lpSolve::lp(
+  direction = "max", ## Вид оптимизация: min/max
+  objective.in = b, ## Objective, коефициенти на целевата функция
+  const.mat = A, ## Constraints matrix, матрица с коефициенти на ограниченията
+  const.dir = "<=", ## Constraints direction, посока на неравенствата
+  const.rhs = r ## Right hand side, дясна страна на ограниченията
+)
+```
+
+```{r print-solution, echo = TRUE}
+result$solution
+```
