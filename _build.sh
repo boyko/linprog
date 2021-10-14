@@ -1,6 +1,6 @@
 #!/bin/sh
 
-docker build -t linprog_book .
+# docker build -t linprog_book .
 
 set -ev
 
