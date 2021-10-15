@@ -144,8 +144,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#история"><i class="fa fa-check"></i><b>1.3</b> История</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#задача"><i class="fa fa-check"></i><b>1.4</b> Задача</a></li>
 <li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#въпрос"><i class="fa fa-check"></i><b>1.5</b> Въпрос</a></li>
-<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#допустимо-множество-2"><i class="fa fa-check"></i><b>1.6</b> Допустимо множество (2)</a></li>
-<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#стойности-на-целевата-функция-във-върховете"><i class="fa fa-check"></i><b>1.7</b> Стойности на целевата функция във върховете</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#допустимо-множество-1"><i class="fa fa-check"></i><b>1.6</b> Допустимо множество (1)</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#допустимо-множество-2"><i class="fa fa-check"></i><b>1.7</b> Допустимо множество (2)</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#стойности-на-целевата-функция-във-върховете"><i class="fa fa-check"></i><b>1.8</b> Стойности на целевата функция във върховете</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="графичен-метод.html"><a href="графичен-метод.html"><i class="fa fa-check"></i><b>2</b> Графичен метод</a></li>
 <li class="divider"></li>
@@ -256,8 +257,10 @@ x_2 \geq 0
 <p>Решение:</p>
 <p><span class="math display">\[
 (x^*_1 = 48, x^*_2 = 0)
-\]</span>
-## Допустимо множество (1)</p>
+\]</span></p>
+</div>
+<div id="допустимо-множество-1" class="section level2" number="1.6">
+<h2><span class="header-section-number">1.6</span> Допустимо множество (1)</h2>
 <p>За да решим задачата (и с трите ограничения) първо ще представим допустимото множество графично.
 За целта първо ще начертаем правите към трите ограничения. За да можем да начертаем правите са ни нужни по две точки от всяка права. Най-лесно можем да намерим пресечните им точки с двете оси (<span class="math inline">\(x_1\)</span> и <span class="math inline">\(x_2\)</span>).</p>
 <p>За всички точки на оста <span class="math inline">\(x_2\)</span> е изпълнено, че <span class="math inline">\(x_1 = 0\)</span>. Когато заместим с <span class="math inline">\(x_1 = 0\)</span> в уравнението на всяка от правите ще намерим пресечните им точки с оста <span class="math inline">\(x_2\)</span>. За всички точки от оста <span class="math inline">\(x_1\)</span> важи, че <span class="math inline">\(x_2 = 0\)</span>, така че когато заместим с <span class="math inline">\(x_2 = 0\)</span> в уравненията на правите ще получим пресечните им точки с оста <span class="math inline">\(x_1\)</span>.</p>
@@ -283,14 +286,14 @@ x_1 + x_2 = 48
 <p><img src="linprog_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Допустимото множество се състои от всички точки в полигона (0, 0), (32, 0), (20, 24), (14, 33), (0, 48).</p>
 </div>
-<div id="допустимо-множество-2" class="section level2" number="1.6">
-<h2><span class="header-section-number">1.6</span> Допустимо множество (2)</h2>
+<div id="допустимо-множество-2" class="section level2" number="1.7">
+<h2><span class="header-section-number">1.7</span> Допустимо множество (2)</h2>
 <p><img src="linprog_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 За да определим кой от върховете на допустимото множество е оптималното решение ще изчислим
 целевата функция за всеки от върховете.</p>
 </div>
-<div id="стойности-на-целевата-функция-във-върховете" class="section level2 smaller" number="1.7">
-<h2><span class="header-section-number">1.7</span> Стойности на целевата функция във върховете</h2>
+<div id="стойности-на-целевата-функция-във-върховете" class="section level2 smaller" number="1.8">
+<h2><span class="header-section-number">1.8</span> Стойности на целевата функция във върховете</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 * 0 + 2 * 0</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Връх (32, 0)</span></span>
 <span id="cb2-2"><a href="index.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">32</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">0</span></span></code></pre></div>
