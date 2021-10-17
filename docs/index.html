@@ -275,8 +275,7 @@ x_2 \geq 0
 </div>
 <div id="допустимо-множество-1" class="section level2" number="1.6">
 <h2><span class="header-section-number">1.6</span> Допустимо множество (1)</h2>
-<p>За да решим задачата (и с трите ограничения) първо ще представим допустимото множество графично.
-За целта първо ще начертаем правите към трите ограничения. За да можем да начертаем правите са ни нужни по две точки от всяка права. Най-лесно можем да намерим пресечните им точки с двете оси (<span class="math inline">\(x_1\)</span> и <span class="math inline">\(x_2\)</span>).</p>
+<p>За да решим задачата (и с трите ограничения) първо ще представим допустимото множество графично, като за целта ще начертаем правите към всяко от петте ограничения (влючително ограниченията за неотрицателност). За да можем да начертаем правите са ни нужни по две точки от всяка права. Най-лесно можем да намерим пресечните им точки с двете оси (<span class="math inline">\(x_1\)</span> и <span class="math inline">\(x_2\)</span>).</p>
 <p>За всички точки на оста <span class="math inline">\(x_2\)</span> е изпълнено, че <span class="math inline">\(x_1 = 0\)</span>. Когато заместим с <span class="math inline">\(x_1 = 0\)</span> в уравнението на всяка от правите ще намерим пресечните им точки с оста <span class="math inline">\(x_2\)</span>. За всички точки от оста <span class="math inline">\(x_1\)</span> важи, че <span class="math inline">\(x_2 = 0\)</span>, така че когато заместим с <span class="math inline">\(x_2 = 0\)</span> в уравненията на правите ще получим пресечните им точки с оста <span class="math inline">\(x_1\)</span>.</p>
 <p>Права на първото ограничение (инфраструктура):</p>
 <p><span class="math display">\[
@@ -298,17 +297,19 @@ x_1 + x_2 = 48
 <p>По същия начин можем да намерим и две точки от правата на третото ограничение (бюджет):
 (0, 300 / 5) и (300 / 9, 0).</p>
 <p><img src="linprog_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>Допустимото множество се състои от всички точки в полигона (0, 0), (32, 0), (20, 24), (14, 33), (0, 48).</p>
 </div>
 <div id="допустимо-множество-2" class="section level2" number="1.7">
 <h2><span class="header-section-number">1.7</span> Допустимо множество (2)</h2>
+<p>Допустимото множество се състои от всички точки в полигона (0, 0), (32, 0), (20, 24), (15, 33), (0, 48). Изчислението на пресечните точки (20, 24) и (15, 33) засега ще оставим на компютъра.</p>
 <p><img src="linprog_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>За да определим кой от върховете на допустимото множество е оптималното решение ще изчислим
-целевата функция за всеки от върховете.</p>
 </div>
 <div id="стойности-на-целевата-функция-във-върховете" class="section level2 smaller" number="1.8">
 <h2><span class="header-section-number">1.8</span> Стойности на целевата функция във върховете</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 * 0 + 2 * 0</span></span></code></pre></div>
+<p>Оптималното решение не може да е вътрешна точка за допустимото множество.
+За да определим кой от върховете на допустимото множество е оптималното решение ще изчислим
+целевата функция за всеки от върховете.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Връх (0, 0)</span></span>
+<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 * 0 + 2 * 0</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Връх (32, 0)</span></span>
 <span id="cb2-2"><a href="index.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">32</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">0</span></span></code></pre></div>
 <pre><code>## [1] 96</code></pre>
@@ -321,7 +322,10 @@ x_1 + x_2 = 48
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Връх (0, 48)</span></span>
 <span id="cb8-2"><a href="index.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">0</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">48</span></span></code></pre></div>
 <pre><code>## [1] 96</code></pre>
-<p>Оптималната комбинация от американски и британски самолети е <span class="math inline">\((x^*_1 = 15, x^*_2 = 33)\)</span>.</p>
+<p>Оптималната комбинация от американски и британски самолети е
+<span class="math inline">\((x^*_1 = 15, x^*_2 = 33)\)</span>. Общият товар, който могат да пренесат самолетите
+е <span class="math inline">\(30000 x_^*_{1} + 20000 x_^*_{2} = 30000 \cdot 15 + 20000 \cdot 33 = 1 110 000\)</span>
+кубични фута.</p>
 
 </div>
 </div>
