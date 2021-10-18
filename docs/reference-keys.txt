@@ -1,6 +1,8 @@
 fig:unnamed-chunk-1
 fig:unnamed-chunk-2
 fig:unnamed-chunk-3
+fig:unnamed-chunk-13
+fig:unnamed-chunk-14
 въведение-в-линейното-програмиране
 софтуер
 пример-1-берлински-въздушен-мост

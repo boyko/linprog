@@ -199,13 +199,129 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Колко от двата типа кафе ще препоръчате на кафенето да смеси?</p>
 <div id="математически-модел-1" class="section level3" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Математически модел</h3>
+<p>променливи?</p>
+<p><span class="math display">\[
+x_1: \text{ Супер еспресо (кг.)}\\
+x_2: \text{ Делукс еспресо (кг.)}
+\]</span></p>
+<p><span class="math display">\[
+\max z = 40 x_1 + 50 x_2 \text{ (целева функция)} \\
+0.5 x_1 + 0.25 x_2 \leq 120 \text{ (бразилско кафе)}\\
+0.5 x_1 + 0.75 x_2 \leq 160 \text{ (кубинско кафе)} \\
+0 \cdot x_1 + x_2 \leq 150 \text{ (търсене делукс)}\\
+x_1 \geq 0 \\
+x_2 \geq 0
+\]</span></p>
 </div>
 <div id="допустимо-множество" class="section level3" number="2.1.2">
 <h3><span class="header-section-number">2.1.2</span> Допустимо множество</h3>
-<p><img src="linprog_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Както и в предишната задаче ще изобразим графично допустимото множество, като начертаем правите, към всяко от петте неравенства:</p>
+<p><span class="math display">\[
+\begin{align}
+    0.5 x_1 + 0.25 x_2 &amp; = 120 \\
+    0.5 x_1 + 0.75 x_2 &amp; = 160 \\
+    0 \cdot x_1 + x_2 &amp; = 150
+\end{align}
+\]</span></p>
+<p>Първо ще пресметнем пресечните точки на трите прави с осите <span class="math inline">\(x_1\)</span> и <span class="math inline">\(x_2\)</span>?</p>
+<ul>
+<li>Права бразилско кафе:
+(0, 120 / 0.25 = 480), (120 / 0.5 = 240, 0)</li>
+<li>Права кубинско кафе:
+(0, 160 / 0.75), (160 / 0.5, 0)</li>
+<li>Права търсене на Делукс:
+(0, 150), (100, 150)
+Тази права е успоредна на оста <span class="math inline">\(x_1\)</span>.</li>
+</ul>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
+<img src="linprog_files/figure-html/unnamed-chunk-13-1.png" alt="fig:feasible-set-lines" width="672" />
+<p class="caption">
+Figure 2.1: fig:feasible-set-lines
+</p>
+</div>
+<p>Допустимото множество е определено от всички точки, които едновременно изпълняват
+всички ограничения. На фигура @ref{fig:feasible-set-lines} това е полигонът определен от</p>
+<ol style="list-style-type: decimal">
+<li>Пресечната точка на равенствата на двете ограничения
+за неотрицателност: (0, 0)</li>
+<li>Пресечната точка на равенствата на ограниченията “бразилско кафе”
+и “кубинско кафе”</li>
+<li>Пресечната точка на равенствата на ограниченията “кубинско кафе”
+и “търсене на Делукс”</li>
+<li>Пресечната точка на равенствата на ограниченията “търсене на Делукс” и
+неотрицателността на Делукс (оста <span class="math inline">\(x_2\)</span>). Вече пресметнахме тази точка,
+когато чертахме правите към ограниченията: (0, 150).</li>
+</ol>
+<p>В пресечната точка на правите към “кубинско кафе”/“бразилско кафе” са изпълнени
+и двете равенства едновременно. За да намерим точката трябва да решим система
+от двете уравнения</p>
+<p><span class="math display">\[
+\begin{equation}
+  \left | \begin{array}{@{}l@{}}
+    0.5 x_1 + 0.25 x_2 = 120 \text{ (1: бразилско кафе)} \\
+    0.5 x_1 + 0.75 x_2 = 160 \text{ (2: кубинско кафе)}
+  \end{array}\right.\,.
+\end{equation}
+\]</span></p>
+<p>Един начин да решим системата е да извадим първото уравнение от
+второто уравнение. Когато го направим получаваме</p>
+<p><span class="math display">\[
+(0.75 - 0.25) x_2 = 160 - 120 \implies \\
+0.5 x_2 = 40 \implies \\x_2 = 80
+\]</span></p>
+<p>Заместваме с <span class="math inline">\(x_2 = 80\)</span> в първото уравнение и получаваме</p>
+<p><span class="math display">\[
+0.5 x_1 + 0.25 \cdot 80 = 120 \implies
+x_1 = 200.
+\]</span></p>
+<p>Решението на системата е (200, 80): пресечната точка на двете прави.</p>
+<p>За да намерим координатите на пресечната точка на равенствата на
+“кубинско кафе” и “търсене на Делукс” трябва да решим системата от две уравнения
+принадлежащи към тези ограничения:</p>
+<p><span class="math display">\[
+\begin{equation}
+  \left | \begin{array}{@{}l@{}}
+    0.5 x_1 + 0.75 x_2 = 160 \text{ (2: кубинско кафе)} \\
+    0\cdot x_1 + x_2 = 150 \text{ (3: търсене делукс)}
+  \end{array}\right.\,.
+\end{equation}
+\]</span>
+Решението на системата можем да получим, като заместим в първото уравнение с <span class="math inline">\(x_2 = 150\)</span>,
+за да получим</p>
+<p><span class="math display">\[
+\begin{equation}
+  \left | \begin{array}{@{}l@{}}
+    0.5 x_1 + 0.75 \cdot 150 = 160 \implies 0.5x_1 = 160 - 112.5 \implies x_1 = 95 \\
+    x_2 = 150
+  \end{array}\right.\,.
+\end{equation}
+\]</span></p>
+<p>С това намерихме координатите на пресечната точка между правите на “кубинско кафе” и
+“търсене на Делукс”: (95, 150).</p>
+<p>Така получаваме, че върховете на допустимото множество (графика <a href="#fig:feasible-set"><strong>??</strong></a>) са (0, 0), (240, 0), (200, 80), (95, 150), (0, 150).</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
+<img src="linprog_files/figure-html/unnamed-chunk-14-1.png" alt="feasible-set" width="672" />
+<p class="caption">
+Figure 2.2: feasible-set
+</p>
+</div>
 </div>
 <div id="целева-функция-нормален-вектор" class="section level3" number="2.1.3">
 <h3><span class="header-section-number">2.1.3</span> Целева функция, нормален вектор</h3>
+<p>За да определим оптималния план графично ще начертаем прави, съответстващи на
+разпипчни нива на печалба, например</p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>Всички комбинации <span class="math inline">\(x_1\)</span> и <span class="math inline">\(x_2\)</span>, за които печалбата (целевата функция) е равна на 5000 лв.</p>
+<p><span class="math display">\[
+40x_1 + 50x_2 = 5000
+\]</span></p>
+<p>Всички комбинации <span class="math inline">\(x_1\)</span> и <span class="math inline">\(x_2\)</span>, за които печалбата (целевата функция) е равна на 1000 лв.</p>
+<p><span class="math display">\[
+40x_1 + 50x_2 = 10000
+\]</span></p>
+<p>Векторът (40, 50) се нарича нормален вектор на правите на функцията на печалба и
+той е перпендикулярен на тях. Координатите на нормалния вектор се получават от
+коефициентите на целевата функция.</p>
 </div>
 <div id="оптимален-план" class="section level3" number="2.1.4">
 <h3><span class="header-section-number">2.1.4</span> Оптимален план</h3>
