@@ -1,5 +1,8 @@
 book_filename: "linprog"
 language:
+  label:
+    fig: 'Графика '
+    tab: 'Таблица '
   ui:
     chapter_name: "Част "
 delete_merged_file: true
