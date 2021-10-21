@@ -199,18 +199,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Колко от двата типа кафе ще препоръчате на кафенето да смеси?</p>
 <div id="математически-модел-1" class="section level3" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Математически модел</h3>
-<p>променливи?</p>
+<p>Целеви променливи:</p>
 <p><span class="math display">\[
-x_1: \text{ Супер еспресо (кг.)}\\
-x_2: \text{ Делукс еспресо (кг.)}
+\begin{align}
+&amp; x_1: \text{ Супер еспресо (кг.)}\\
+&amp; x_2: \text{ Делукс еспресо (кг.)}
+\end{align}
 \]</span></p>
 <p><span class="math display">\[
 \max z = 40 x_1 + 50 x_2 \text{ (целева функция)} \\
-0.5 x_1 + 0.25 x_2 \leq 120 \text{ (бразилско кафе)}\\
-0.5 x_1 + 0.75 x_2 \leq 160 \text{ (кубинско кафе)} \\
-0 \cdot x_1 + x_2 \leq 150 \text{ (търсене Делукс)}\\
-x_1 \geq 0 \\
-x_2 \geq 0
+\begin{align}
+  0.5 x_1 + 0.25 x_2 &amp; \leq 120 \text{ (бразилско кафе)}\\
+  0.5 x_1 + 0.75 x_2 &amp; \leq 160 \text{ (кубинско кафе)} \\
+  0 \cdot x_1 + x_2 &amp; \leq 150 \text{ (търсене Делукс)}\\
+  x_1 &amp; \geq 0 \\
+  x_2 &amp; \geq 0
+\end{align}
 \]</span></p>
 </div>
 <div id="допустимо-множество" class="section level3" number="2.1.2">
@@ -266,13 +270,18 @@ x_2 \geq 0
 <p>Един начин да решим системата е да извадим първото уравнение от
 второто уравнение. Когато го направим получаваме</p>
 <p><span class="math display">\[
-(0.75 - 0.25) x_2 = 160 - 120 \implies \\
-0.5 x_2 = 40 \implies \\x_2 = 80
+\begin{align}
+  (0.75 - 0.25) x_2 &amp; = 160 - 120 \\
+  0.5 x_2 &amp; = 40 \\
+  x_2 &amp; = 80
+\end{align}
 \]</span></p>
 <p>Заместваме с <span class="math inline">\(x_2 = 80\)</span> в първото уравнение и получаваме</p>
 <p><span class="math display">\[
-0.5 x_1 + 0.25 \cdot 80 = 120 \implies
-x_1 = 200.
+\begin{align}
+  0.5 x_1 + 0.25 \cdot 80 &amp; = 120\\
+  x_1 &amp; = 200.
+\end{align}
 \]</span></p>
 <p>Решението на системата е (200, 80): пресечната точка на двете прави.</p>
 <p>За да намерим координатите на пресечната точка на равенствата на
