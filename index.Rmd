@@ -74,25 +74,31 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/d/
 
 
 $$
+\begin{align}
 x_1: \text{ брой амер. самолети}\\
 x_2: \text{ брой брит. самолети}
+\end{align}
 $$
 
 $$
 \max 3 x_1 + 2 x_2 \text{ (общ товар, целева функция, objective)} \\
-x_1 + x_2 \leq 48 \text{ (инфраструктура)} \\
-16 x_1 + 8 x_2 \leq 512 \text{ (персонал)} \\
-9 x_1 + 5 x_2 \leq 300 \text{ (бюджет)} \\
-x_1 \geq 0 \text{ (брой амер. самолети)} \\
-x_2 \geq 0 \text{ (брой брит. самолети)}
+\begin{align}
+  x_1 + x_2 & \leq 48 \text{ (инфраструктура)} \\
+  16 x_1 + 8 x_2 & \leq 512 \text{ (персонал)} \\
+  9 x_1 + 5 x_2 & \leq 300 \text{ (бюджет)} \\
+  x_1 & \geq 0 \text{ (брой амер. самолети)} \\
+  x_2 & \geq 0 \text{ (брой брит. самолети)}
+\end{align}
 $$
 Преди да решим задачата, нека да я решим неформално в опростен вариант, като игнорираме второто и третото ограничение:
 
 $$
 \max 3 x_1 + 2 x_2 \\
-x_1 + x_2 \leq 48 \\
-x_1 \geq 0 \\
-x_2 \geq 0
+\begin{align}
+  x_1 + x_2 & \leq 48 \\
+  x_1 & \geq 0 \\
+  x_2 & \geq 0
+\end{align}
 $$
 Решение:
 
