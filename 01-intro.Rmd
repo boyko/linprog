@@ -418,8 +418,9 @@ $$
   от нормалното работно време.
 - Произведени в предишния период палта могат да се складират на цена от 12 лв.
   на сезон за всяко палто.
-- Фирмата може да назначава и освобождава служители на цени 500 лв. за назначаване 
-  и 420 лв. за освобождаване на служите (за целия сезон).
+- Фирмата може да назначава и освобождава служители. За назначаване на един
+  нов служител цената е 500 лв. За освобождаване на служител разходите възлизат 
+  на 420 лв.
 - Фирмата няма начални запаси от готови палта
 
 
@@ -428,3 +429,353 @@ $$
 
 Изгответе математически модел с който да намерите оптималния план 
 (в смисъл на най-ниски разходи) за тази фирма.
+
+## Пример (3)
+
+Фирма произвежда два вида изделия -- А и Б и разполага с 600 единици
+електроенергия, 480 единици мед и 750 кг. желязо.
+Разходите за електроенергия и метали са дадени в таблица \@ref(tab:example-prod-table).
+Намерете максималния приход, който може да реализира фирмата при следните два сценария.
+
+```{r example-prod-table}
+exmpl_3_tbl <- tibble(
+  `Ресурс` = c("Ел. енергия", "Мед", "Желязо"),
+  `А` = c(3, 3, 4),
+  `Б` = c(3, 2, 1)
+)
+exmpl_3_tbl %>%
+  knitr::kable() %>%
+  kableExtra::kable_styling()
+```
+### Допустимо множество
+
+$$
+\begin{align}
+  x_1: \text{брой единици от продукт А}\\
+  x_2: \text{брой единици от продукт Б}
+\end{align}
+$$
+$$
+\begin{align}
+  3 x_1 + 3 x_2 & \leq 600\\
+  3 x_1 + 2 x_2 & \leq 480 \\
+  4 x_1 + 1 x_2 & \leq 750\\
+  x_1 \geq 0 \\
+  x_2 \geq 0
+\end{align}
+$$
+
+```{r}
+exmpl_3_fset_plt <- tribble(
+  ~constr, ~intercept, ~slope,
+  "Ел. енергия", 600 / 3, -1,
+  "Мед", 480 / 2, -3 / 2,
+  "Желязо", 750, -4
+)  %>%
+  ggplot() +
+    geom_abline(aes(intercept = intercept, slope = slope, colour = constr)) +
+    xlim(c(0, 300)) +
+    ylim(c(0, 200)) +
+  geom_polygon(
+    data = tribble(
+      ~x, ~y,
+      0, 0,
+      160, 0,
+      80, 120,
+      0, 200
+      ),
+    aes(x = x, y = y), 
+    fill = col_palette[1],
+    alpha = 0.4
+  ) +
+  labs(
+    x = expression(paste(x[1], " брой от продукт А")),
+    y = expression(paste(x[2], " брой от продукт Б"))
+  )
+exmpl_3_fset_plt
+```
+Допустимото множество е полигонът с върхове: (0, 0), пресечната точка на "мед" и
+оста $x_1$: (160, 0), пресечната точка на "мед" и "ел. енергия" и пресечната точка на "ел. енергия" 
+с оста $x_2$.
+
+Пресечната точка на "мед" и "ел. енергия" можем да намерим, като решим системата
+уравнения
+
+$$
+\begin{align}
+  3 x_1 + 3 x_2 & = 600\\
+  3 x_1 + 2 x_2 & = 480
+\end{align}
+$$
+
+В предходния пример намерихме пресечната точка на правите към две ограничения
+като решихме система от две уравнения (като извадихме едното уравнения от другото). 
+Тук ще решим тази система от уравнения с правилото на Крамер, 
+за да го илюстрираме (двата подхода са еквивалентни):
+
+
+<!-- ```{theorem, cramer, name="Правило на Крамер"} -->
+<!-- За система от линейни уравнения -->
+
+
+<!-- ``` -->
+
+Правилото на Крамер гласи, че за система от линейни уравнения
+$$
+\begin{equation}
+  \left | \begin{array}{@{}l@{}}
+    a x_1 + b x_2 & = c \\
+    d x_1 + e x_2 & = f
+  \end{array}
+\end{equation}
+$$
+<!-- \right.\,. -->
+решението на системата е дадено от:
+
+$$
+\begin{align}
+  x^*_1 = \frac{\Delta_1}{\Delta}\\
+  x^*_2= \frac{\Delta_2}{\Delta}
+\end{align}
+$$
+където $\Delta_1$, $\Delta_2$ и $\Delta$ са детерминантите:
+    
+$$
+\Delta = \left| 
+  \begin{array}{cc}
+    a & b \\
+    d & e
+  \end{array}
+\right|,
+\Delta_1 = \left |
+  \begin{array}{cc}
+    c & b \\
+    f & e
+  \end{array}
+\right |,
+\Delta_2 = \left |
+  \begin{array}{cc}
+    a & c \\
+    d & f
+  \end{array}
+\right |
+$$
+
+Приложено в конкретния пример получаваме:
+
+$$
+\begin{align}
+  \Delta & = \left| 
+    \begin{array}{cc}
+      3 & 3 \\
+      3 & 2
+    \end{array}
+  \right| = 3 \cdot 2 - 3 \cdot 3 = 6 - 9 = -3 \\
+  \Delta_1 & = \left |
+    \begin{array}{cc}
+      600 & 3 \\
+      480 & 2
+    \end{array}
+  \right | = 600 \cdot 2 - 3 \cdot 480 = -240 \\
+  \Delta_2 & = \left |
+    \begin{array}{cc}
+      3 & 600 \\
+      3 & 480
+    \end{array}
+  \right | = 3 \cdot 480 - 600 \cdot 3 = -360 \implies\\
+  x^*_1 & = \frac{\Delta_1}{\Delta} = \frac{-240}{-3} = 80 \\
+  x^*_2 & = \frac{\Delta_2}{\Delta} = \frac{-360}{-3} = 120.
+\end{align}
+$$
+
+
+### Сценарий 1 
+
+Цента на продукт А е 9 единици, а на продукт Б -- 8 единици. 
+Намерете максималния приход, който може да реализира фирмата.
+
+Целева функция
+
+Решение:
+
+```{r}
+A <- matrix(
+  c(3, 3,
+    3, 2,
+    4, 1
+    ),
+  byrow = TRUE,
+  ncol = 2
+)
+r <- c(600, 480, 750)
+b <- c(9, 9)
+```
+
+```{r}
+gMOIP::plotPolytope(
+  A = A,
+  b = r,
+  obj = b,
+  crit = "max",
+  plotFeasible = TRUE,
+  # plotOptimum = TRUE,
+  labels = "coord",
+  plotFaces = TRUE) +
+  labs(
+    x = expression(paste(x[1], " брой от продукт А")),
+    y = expression(paste(x[2], " брой от продукт Б"))
+  )
+```
+
+```{r}
+# Solve(A[-3, ], r[-3])
+```
+
+```{r}
+exmpl_3_fset_plt +
+  geom_segment(
+    data = tibble(x = 0, y = 0, xend = 10 * 9, yend = 10 * 8),
+    aes(x = x, y = y, xend = xend, yend = yend),
+    arrow = arrow(
+      length=unit(0.15,"cm"),
+      ends="last",
+      type = "closed")
+  ) +
+  geom_abline(
+    intercept = c(
+        1680 / 8,
+        500 / 8,
+        1000 / 8
+        ),
+      slope = - 9 / 8,
+      linetype = 2
+  ) +
+  annotate("text", x = 19, y = 145 - y_offset, label = "z = 5000", size = 3)
+```
+
+### Сценарий 2
+
+Цента и на двата продукта е 9 единици. Намерете максималния
+приход, който може да реализира фирмата.
+
+```{r}
+tribble(
+  ~constr, ~intercept, ~slope,
+  "Ел. енергия", 600 / 3, -1,
+  "Мед", 480 / 2, -3 / 2,
+  "Желязо", 750, -4
+)  %>%
+  ggplot() +
+    geom_abline(aes(intercept = intercept, slope = slope, colour = constr)) +
+    xlim(c(0, 300)) +
+    ylim(c(0, 200)) +
+  geom_polygon(
+    data = tribble(
+      ~x, ~y,
+      0, 0,
+      160, 0,
+      80, 120,
+      0, 200
+      ),
+    aes(x = x, y = y), 
+    fill = col_palette[1],
+    alpha = 0.4
+  ) +
+  geom_segment(
+    data = tibble(x = 0, y = 0, xend = 10 * 9, yend = 10 * 9),
+    aes(x = x, y = y, xend = xend, yend = yend),
+    arrow = arrow(
+      length=unit(0.15,"cm"),
+      ends="last",
+      type = "closed")
+  ) +
+  geom_abline(
+    intercept = c(
+        1800 / 9,
+        500 / 9,
+        1000 / 9
+        ),
+      slope = - 1,
+      linetype = 2
+  ) +
+  annotate("text", x = 30, y = 210 - y_offset, label = "z = 1800", size = 3)
+```
+Оптимални са всички комбинации от $x_1$ и $x_2$, които лежат на отсечката (0, 200), (80, 120):
+
+$$
+\left(
+  \begin{array}{c}
+    x^*_1 \\
+    x^*_2
+  \end{array}
+\right) = \alpha \left(\begin{array}{c} 0 \\ 200 \end{array}\right) 
++ (1 - \alpha) \left(\begin{array}{c} 80 \\ 120 \end{array}\right)\\
+\alpha \in [0, 1]
+$$
+
+
+## Пример (4)
+
+Намерете решението на следната задача:
+
+$$
+\max  z = 8x_1 + 6 x_2\\
+5 x_1 + 4 x_2 \leq 60\\
+2 x_1 + 4 x_2 \leq 48 \\
+3 x_2 \geq 60 \\
+x_1 \geq 0\\
+x_2 \geq 0
+$$
+
+```{r}
+tribble(
+  ~constr, ~intercept, ~slope,
+  "1", 60 / 4, -5 / 4,
+  "2", 48 / 4, -2 / 4,
+  "3", 60 / 3, 0
+) %>%
+  ggplot() +
+    geom_abline(aes(intercept = intercept, slope = slope, colour = constr)) +
+    xlim(c(0, 40)) +
+    ylim(c(0, 40)) +
+    labs(
+      x = expression(x[1]),
+      y = expression(x[2]),
+      colour = "Ограничение"
+    )
+```
+
+## Пример (5)
+
+Намерете решението на следната задача:
+
+$$
+\max  z = 3x_2 \\
+-2 x_1 + x_2 \leq 4 \\
+x_2 \geq 2 \\
+x_1 \geq 0\\
+x_2 \geq 0
+$$
+
+```{r}
+tribble(
+  ~constr, ~intercept, ~slope,
+  "1", 4 / 1, 2,
+  "2", 2, 0
+) %>%
+  ggplot() +
+    geom_abline(aes(intercept = intercept, slope = slope, colour = constr)) +
+    xlim(c(0, 40)) +
+    ylim(c(0, 40)) +
+    labs(
+      x = expression(x[1]),
+      y = expression(x[2]),
+      colour = "Ограничение"
+    )
+```
+
+
+
+
+
+

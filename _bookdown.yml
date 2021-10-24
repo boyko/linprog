@@ -3,6 +3,7 @@ language:
   label:
     fig: 'Графика '
     tab: 'Таблица '
+    thm: 'Теорема '
   ui:
     chapter_name: "Част "
 delete_merged_file: true
