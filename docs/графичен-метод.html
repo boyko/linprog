@@ -545,6 +545,46 @@ z = 40x_1 + 50x_2 = 10000
 като решихме система от две уравнения (като извадихме едното уравнения от другото).
 Тук ще решим тази система от уравнения с правилото на Крамер,
 за да го илюстрираме (двата подхода са еквивалентни):</p>
+<!-- ```{theorem, cramer, name="Правило на Крамер"} -->
+<!-- За система от линейни уравнения -->
+<!-- ``` -->
+<p>Правилото на Крамер гласи, че за система от линейни уравнения
+<span class="math display">\[
+\begin{equation}
+  \left | \begin{array}{@{}l@{}}
+    a x_1 + b x_2 &amp; = c \\
+    d x_1 + e &amp; = f
+  \end{array}\right.\,.
+\end{equation}
+\]</span></p>
+<p>решението на системата е дадено от:</p>
+<p><span class="math display">\[
+\begin{align}
+  x^*_1 = \frac{\Delta_1}{\Delta}\\
+  x^*_2= \frac{\Delta_2}{\Delta}
+\end{align}
+\]</span>
+където <span class="math inline">\(\Delta_1\)</span>, <span class="math inline">\(\Delta_2\)</span> и <span class="math inline">\(\Delta\)</span> са детерминантите:</p>
+<p><span class="math display">\[
+\Delta = \left| 
+  \begin{array}{cc}
+    a &amp; b \\
+    d &amp; e
+  \end{array}
+\right|,
+\Delta_1 = \left |
+  \begin{array}{cc}
+    c &amp; b \\
+    f &amp; e
+  \end{array}
+\right |,
+\Delta_2 = \left |
+  \begin{array}{cc}
+    a &amp; c \\
+    d &amp; f
+  \end{array}
+\right |
+\]</span></p>
 <p>Приложено в конкретния пример получаваме:</p>
 <p><span class="math display">\[
 \begin{align}
