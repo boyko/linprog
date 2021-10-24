@@ -53,6 +53,8 @@
 
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -163,6 +165,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1.9" data-path="графичен-метод.html"><a href="графичен-метод.html#скрити-цени"><i class="fa fa-check"></i><b>2.1.9</b> Скрити цени</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="графичен-метод.html"><a href="графичен-метод.html#планиране-на-производство-2"><i class="fa fa-check"></i><b>2.2</b> Планиране на производство (2)</a></li>
+<li class="chapter" data-level="2.3" data-path="графичен-метод.html"><a href="графичен-метод.html#пример-3"><i class="fa fa-check"></i><b>2.3</b> Пример (3)</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="графичен-метод.html"><a href="графичен-метод.html#допустимо-множество-3"><i class="fa fa-check"></i><b>2.3.1</b> Допустимо множество</a></li>
+<li class="chapter" data-level="2.3.2" data-path="графичен-метод.html"><a href="графичен-метод.html#сценарий-1"><i class="fa fa-check"></i><b>2.3.2</b> Сценарий 1</a></li>
+<li class="chapter" data-level="2.3.3" data-path="графичен-метод.html"><a href="графичен-метод.html#сценарий-2"><i class="fa fa-check"></i><b>2.3.3</b> Сценарий 2</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Изготвено с bookdown</a></li>
@@ -438,15 +446,158 @@ z = 40x_1 + 50x_2 = 10000
 от нормалното работно време.</li>
 <li>Произведени в предишния период палта могат да се складират на цена от 12 лв.
 на сезон за всяко палто.</li>
-<li>Фирмата може да назначава и освобождава служители на цени 500 лв. за назначаване
-и 420 лв. за освобождаване на служите (за целия сезон).</li>
+<li>Фирмата може да назначава и освобождава служители. За назначаване на един
+нов служител цената е 500 лв. За освобождаване на служител разходите възлизат
+на 420 лв.</li>
 <li>Фирмата няма начални запаси от готови палта</li>
 </ul>
 <p>Маркетинговият отдел на предприятието оценява, че през следващите четири сезона
 търсенето ще възлиза на съответно 5000, 2000, 500 и 1500 палта.</p>
 <p>Изгответе математически модел с който да намерите оптималния план
 (в смисъл на най-ниски разходи) за тази фирма.</p>
+</div>
+<div id="пример-3" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Пример (3)</h2>
+<p>Фирма произвежда два вида изделия – А и Б и разполага с 600 единици
+електроенергия, 480 единици мед и 750 кг. желязо.
+Разходите за електроенергия и метали са дадени в таблица <a href="#tab:example-prod-table"><strong>??</strong></a>.
+Намерете максималния приход, който може да реализира фирмата при следните два сценария.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Ресурс
+</th>
+<th style="text-align:right;">
+А
+</th>
+<th style="text-align:right;">
+Б
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Ел. енергия
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Мед
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Желязо
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<div id="допустимо-множество-3" class="section level3" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Допустимо множество</h3>
+<p><span class="math display">\[
+\begin{align}
+  x_1: \text{брой единици от продукт А}\\
+  x_2: \text{брой единици от продукт Б}
+\end{align}
+\]</span>
+<span class="math display">\[
+\begin{align}
+  3 x_1 + 3 x_2 &amp; \leq 600\\
+  3 x_1 + 2 x_2 &amp; \leq 480 \\
+  4 x_1 + 1 x_2 &amp; \leq 750\\
+  x_1 \geq 0 \\
+  x_2 \geq 0
+\end{align}
+\]</span></p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+Допустимото множество е полигонът с върхове: (0, 0), пресечната точка на “мед” и
+оста <span class="math inline">\(x_1\)</span>: (160, 0), пресечната точка на “мед” и “ел. енергия” и пресечната точка на “ел. енергия”
+с оста <span class="math inline">\(x_2\)</span>.</p>
+<p>Пресечната точка на “мед” и “ел. енергия” можем да намерим, като решим системата
+уравнения</p>
+<p><span class="math display">\[
+\begin{align}
+  3 x_1 + 3 x_2 &amp; \leq 600\\
+  3 x_1 + 2 x_2 &amp; \leq 480
+\end{align}
+\]</span></p>
+<p>В предходния пример намерихме пресечната точка на правите към две ограничения
+като решихме система от две уравнения (като извадихме едното уравнения от другото).
+Тук ще решим тази система от уравнения с правилото на Крамер,
+за да го илюстрираме (двата подхода са еквивалентни):</p>
+<p>Приложено в конкретния пример получаваме:</p>
+<p><span class="math display">\[
+\begin{align}
+  \Delta &amp; = \left| 
+    \begin{array}{cc}
+      3 &amp; 3 \\
+      3 &amp; 2
+    \end{array}
+  \right| = 3 \cdot 2 - 3 \cdot 3 = 6 - 9 = -3 \\
+  \Delta_1 &amp; = \left |
+    \begin{array}{cc}
+      600 &amp; 3 \\
+      480 &amp; 2
+    \end{array}
+  \right | = 600 \cdot 2 - 3 \cdot 480 = -240 \\
+  \Delta_2 &amp; = \left |
+    \begin{array}{cc}
+      3 &amp; 600 \\
+      3 &amp; 480
+    \end{array}
+  \right | = 3 \cdot 480 - 600 \cdot 3 = -360 \implies\\
+  x^*_1 &amp; = \frac{\Delta_1}{\Delta} = \frac{-240}{-3} = 80 \\
+  x^*_2 &amp; = \frac{\Delta_2}{\Delta} = \frac{-360}{-3} = 120.
+\end{align}
+\]</span></p>
+</div>
+<div id="сценарий-1" class="section level3" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Сценарий 1</h3>
+<p>Цента на продукт А е 9 единици, а на продукт Б – 8 единици.
+Намерете максималния приход, който може да реализира фирмата.</p>
+<p>Целева функция</p>
+<p>Решение:</p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+</div>
+<div id="сценарий-2" class="section level3" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Сценарий 2</h3>
+<p>Цента и на двата продукта е 9 единици. Намерете максималния
+приход, който може да реализира фирмата.</p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+Оптимални са всички комбинации от <span class="math inline">\(x_1\)</span> и <span class="math inline">\(x_2\)</span>, които лежат на отсечката (0, 200), (80, 120):</p>
+<p><span class="math display">\[
+\left(
+  \begin{array}{c}
+    x^*_1 \\
+    x^*_2
+  \end{array}
+\right) = \alpha \left(\begin{array}{c} 0 \\ 200 \end{array}\right) 
++ (1 - \alpha) \left(\begin{array}{c} 80 \\ 120 \end{array}\right)\\
+\alpha \in [0, 1]
+\]</span></p>
 
+</div>
 </div>
 </div>
             </section>
