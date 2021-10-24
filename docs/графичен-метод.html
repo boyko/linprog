@@ -171,6 +171,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.2" data-path="графичен-метод.html"><a href="графичен-метод.html#сценарий-1"><i class="fa fa-check"></i><b>2.3.2</b> Сценарий 1</a></li>
 <li class="chapter" data-level="2.3.3" data-path="графичен-метод.html"><a href="графичен-метод.html#сценарий-2"><i class="fa fa-check"></i><b>2.3.3</b> Сценарий 2</a></li>
 </ul></li>
+<li class="chapter" data-level="2.4" data-path="графичен-метод.html"><a href="графичен-метод.html#пример-4"><i class="fa fa-check"></i><b>2.4</b> Пример (4)</a></li>
+<li class="chapter" data-level="2.5" data-path="графичен-метод.html"><a href="графичен-метод.html#пример-5"><i class="fa fa-check"></i><b>2.5</b> Пример (5)</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Изготвено с bookdown</a></li>
@@ -554,10 +556,11 @@ z = 40x_1 + 50x_2 = 10000
   \left | \begin{array}{@{}l@{}}
     a x_1 + b x_2 &amp; = c \\
     d x_1 + e x_2 &amp; = f
-  \end{array}\right.\,.
+  \end{array}
 \end{equation}
-\]</span></p>
-<p>решението на системата е дадено от:</p>
+\]</span>
+<!-- \right.\,. -->
+решението на системата е дадено от:</p>
 <p><span class="math display">\[
 \begin{align}
   x^*_1 = \frac{\Delta_1}{\Delta}\\
@@ -636,8 +639,33 @@ z = 40x_1 + 50x_2 = 10000
 + (1 - \alpha) \left(\begin{array}{c} 80 \\ 120 \end{array}\right)\\
 \alpha \in [0, 1]
 \]</span></p>
-
 </div>
+</div>
+<div id="пример-4" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Пример (4)</h2>
+<p>Намерете решението на следната задача:</p>
+<p><span class="math display">\[
+\max  z = 8x_1 + 6 x_2\\
+5 x_1 + 4 x_2 \leq 60\\
+2 x_1 + 4 x_2 \leq 48 \\
+3 x_2 \geq 60 \\
+x_1 \geq 0\\
+x_2 \geq 0
+\]</span></p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+<div id="пример-5" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Пример (5)</h2>
+<p>Намерете решението на следната задача:</p>
+<p><span class="math display">\[
+\max  z = 3x_2 \\
+-2 x_1 + x_2 \leq 4 \\
+x_2 \geq 2 \\
+x_1 \geq 0\\
+x_2 \geq 0
+\]</span></p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+
 </div>
 </div>
             </section>
