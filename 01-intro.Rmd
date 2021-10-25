@@ -5,6 +5,7 @@
 # install.packages("matlib")
 library(tidyverse)
 library(matlib)
+
 # options(scipen=999)
 ```
 
@@ -225,17 +226,17 @@ plot(plt_fs_annotated)
 
 
 ```{r}
-# A <- matrix(c(
-#   1 / 2, 1 / 4,
-#   1 / 2, 3 / 4,
-#   0, 1
-#   ),
-#   ncol = 2,
-#   byrow = TRUE
-# )
-# 
-# b <- c(40, 50)
-# r <- c(120, 160, 150)
+A <- matrix(c(
+  1 / 2, 1 / 4,
+  1 / 2, 3 / 4,
+  0, 1
+  ),
+  ncol = 2,
+  byrow = TRUE
+)
+
+b <- c(40, 50)
+r <- c(120, 160, 150)
 # 
 # gMOIP::plotPolytope(
 #   A = A, 
@@ -259,11 +260,16 @@ plot(plt_fs_annotated)
 различни нива на печалба.
 
 ```{r}
+opt_point <- tibble(x = 200, y = 80) %>%
+  mutate(
+    point_coord = paste0("(", x, ",", y, ")")
+  )
+
 plt1_fs +
-  xlim(c(-5, 250)) +
-  ylim(c(-5, 250)) +
+  xlim(c(0, 250)) +
+  ylim(c(0, 250)) +
   geom_segment(
-    data = tibble(x = 0, y = 0, xend = 2 * 40, yend = 2 * 50),
+    data = tibble(x = 0, y = 0, xend = 4 * 40, yend = 4 * 50),
     aes(x = x, y = y, xend = xend, yend = yend),
     arrow = arrow(
       length=unit(0.15,"cm"),
@@ -279,9 +285,21 @@ plt1_fs +
       slope = - 40 / 50,
       linetype = 2
   ) +
-  annotate("text", x = 19, y = 185 - y_offset, label = "z = 10000", size = 3) +
-  annotate("text", x = 19, y = 260 - y_offset, label = "z = 12000", size = 3) +
-  annotate("text", x = 19, y = 120 - y_offset, label = "z = 5000", size = 3)
+  geom_point(
+    data = opt_point,
+    aes(x = x, y = y),
+    size = 3,
+    shape = 2
+  ) +
+  geom_text(
+    data = opt_point,
+    aes(x = x, y = y, label = point_coord),
+    size = 3,
+    position = position_nudge(10, 10)
+  ) +
+  annotate("text", x = 19, y = 185 - y_offset, label = "z=10000", size = 3) +
+  annotate("text", x = 19, y = 260 - y_offset, label = "z=12000", size = 3) +
+  annotate("text", x = 19, y = 120 - y_offset, label = "z=5000", size = 3)
 ```
 
 Всички комбинации $x_1$ и $x_2$, за които печалбата (целевата функция) е равна на 5000 лв лежат на права,
@@ -297,11 +315,11 @@ $$
 $$
 z = 40x_1 + 50x_2 = 10000
 $$
-Двете прави са успоредни една спрямо друга, тъй като наклона на правите зависи от
-коефициентите на $x_1$ и $x_2$ в уравненията и не зависи от константата (5 000 в първото уравнение и 10 000 във второто).
+Двете прави са успоредни една спрямо друга, тъй като наклонът на правите зависи от
+коефициентите на $x_1$ и $x_2$ в уравненията и не зависи от константите (5 000 в първото уравнение и 10 000 във второто).
 
 Векторът (40, 50) се нарича нормален вектор на правите на функцията на печалба и 
-той е перпендикулярен на тях. Координатите на нормалния вектор се получават от 
+е перпендикулярен на тях. Координатите на нормалния вектор се получават от 
 коефициентите на $x_1$ и $x_2$ в целевата функция.
 
 
@@ -312,38 +330,114 @@ $$
 
 Тук можете да изтеглите [пример за реализация в Excel](https://github.com/boyko/linprog/raw/main/exel/Problem_2_coffee_blending.xlsx).
 
+Съдържание на "Answer report"
+
+```{r}
+problem_2_excel_path <- file.path("./exel/Problem_2_coffee_blending.xlsx")
+objective_cell <- readxl::read_excel(
+  problem_2_excel_path, 
+  sheet = "Answer Report 1",
+  range = "B15:E16")
+
+variable_cells <- readxl::read_excel(
+  problem_2_excel_path, 
+  sheet = "Answer Report 1",
+  range = "B20:F22")
+
+constraints <- readxl::read_excel(
+  problem_2_excel_path, 
+  sheet = "Answer Report 1",
+  range = "B26:G29")
+```
+
+```{r}
+objective_cell %>%
+  knitr::kable(caption="Objective cell", escape = TRUE) %>%
+  kableExtra::kable_styling()
+```
+
+```{r}
+variable_cells %>%
+  knitr::kable(caption="Variable cells", escape = TRUE) %>%
+  kableExtra::kable_styling()
+```
+
+```{r}
+constraints %>%
+  knitr::kable(caption="Constraints", escape = TRUE) %>%
+  kableExtra::kable_styling()
+```
+
+
+Съдържание на "Sensitivity report"
+
+```{r}
+sens_rep_colnames <- c(
+  "Cell", "Name", "Final value", 
+  "Reduced Cost", "Objective Coefficient",
+  "Allowable Increase", "Allowable Decrease"
+)
+
+problem_2_sens_variable_cells <- readxl::read_excel(
+  problem_2_excel_path, 
+  sheet = "Sensitivity Report 1",
+  range = "B8:H10")
+
+names(problem_2_sens_variable_cells) <- sens_rep_colnames
+
+problem_2_sens_constraints <- readxl::read_excel(
+  problem_2_excel_path, 
+  sheet = "Sensitivity Report 1",
+  range = "B14:H17")
+
+names(problem_2_sens_constraints) <- sens_rep_colnames
+```
+
+```{r}
+problem_2_sens_variable_cells %>%
+  knitr::kable(caption="Sensitivity report: variable cells.", escape = TRUE) %>%
+  kableExtra::kable_styling()
+```
+
+
+```{r}
+problem_2_sens_constraints %>%
+  knitr::kable(caption="Sensitivity report: constraints.", escape = TRUE) %>%
+  kableExtra::kable_styling()
+```
+
 ### Реализация в `R`
 
-<!-- ```{r} -->
-<!-- result <- lpSolve::lp( -->
-<!--   direction = "max", ## Вид оптимизация: min/max -->
-<!--   objective.in = b, ## Objective, коефициенти на целевата функция -->
-<!--   const.mat = A, ## Constraints matrix, матрица с коефициенти на ограниченията -->
-<!--   const.dir = "<=", ## Constraints direction, посока на неравенствата -->
-<!--   const.rhs = r, ## Right hand side, дясна страна на ограниченията -->
-<!--   compute.sens=TRUE -->
-<!-- ) -->
-<!-- ``` -->
+```{r}
+result <- lpSolve::lp(
+  direction = "max", ## Вид оптимизация: min/max
+  objective.in = b, ## Objective, коефициенти на целевата функция
+  const.mat = A, ## Constraints matrix, матрица с коефициенти на ограниченията
+  const.dir = "<=", ## Constraints direction, посока на неравенствата
+  const.rhs = r, ## Right hand side, дясна страна на ограниченията
+  compute.sens=TRUE
+)
+```
 
-<!-- ```{r} -->
-<!-- result -->
-<!-- ``` -->
+```{r}
+result
+```
 
 
-<!-- ```{r} -->
-<!-- result$solution -->
-<!-- ``` -->
+```{r}
+result$solution
+```
 
-<!-- ```{r} -->
-<!-- result$duals -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- result$duals.from -->
-<!-- ``` -->
+```{r}
+result$duals
+```
+```{r}
+result$duals.from
+```
 
-<!-- ```{r} -->
-<!-- result$duals.to -->
-<!-- ``` -->
+```{r}
+result$duals.to
+```
 
 <!-- ```{r} -->
 <!-- result$sens.coef.from -->
@@ -394,6 +488,76 @@ $$
 - В какви граници може да се променя ограничението за търсенето на Супер еспресо кафе без
 да се промени характера на оптималния план (без да се променят дефицитните ресурси)?
 
+```{r}
+cub_coffee_optima <- 
+  tribble(
+    ~x, ~y, ~level,
+    165, 150, 195,
+    180, 120, 180,
+    200, 80, 120
+) %>%
+  mutate(
+    point_coord = paste0("(", paste(x, y, sep = ","), ")"),
+    level_label = paste0("К. кафе=", level)
+  )
+
+plt1_fs_poly_lines + 
+  xlim(c(0, 250)) +
+  ylim(c(0, 250)) +
+  geom_abline(
+      data =  tribble(
+        ~constr, ~ intercept, ~slope,
+        "Кубинско кафе = 180", 180 / 0.75, -0.5 / 0.75,
+        "Кубинско кафе = 180", 180 / 0.75, -0.5 / 0.75,
+        "Кубинско кафе = 195", 195 / 0.75, -0.5 / 0.75,
+        "Кубинско кафе = 250", 250 / 0.75, -0.5 / 0.75,
+        ),
+      aes(intercept = intercept, slope = slope),
+      colour = col_palette[2],
+      size = 1/2,
+      alpha = 0.5
+    ) +
+  # annotate("text", x = 230, y = 60 - y_offset, label = "К. кафе=160", size = 3) +
+  # annotate("text", x = 230, y = 100 - y_offset, label = "К. кафе=180", size = 3)+
+  # annotate("text", x = 230, y = 140 - y_offset, label = "К. кафе=195", size = 3) +
+  # annotate("text", x = 230, y = 220 - y_offset, label = "К. кафе=250", size = 3) +
+  geom_point(
+    data = cub_coffee_optima,
+    aes(x = x, y = y),
+    shape = 2,
+    size = 2
+  ) +
+  geom_text(
+    data = cub_coffee_optima,
+    aes(x = x, y = y, label = point_coord),
+    size = 3,
+    position = position_nudge(10, 10)
+    ) +
+  geom_text(
+    data = cub_coffee_optima,
+    aes(x = x, y = y, label = level_label),
+    size = 3,
+    position = position_nudge(10, 20)
+    )
+```
+Пресечната точка на уравненията към "Търсене Делукс" и "Бразилско кафе" намираме
+като решение на системата от две уравнения:
+
+$$
+\begin{align}
+    0.5 x_1 + 0.25 x_2 & = 120 \\
+    0 \cdot x_1 + x_2 & = 150
+\end{align}
+$$
+
+```{r}
+Solve(A[-2, ], r[-2])
+```
+```{r}
+A[-3, ]
+Solve(A[-3, ], c(120, 180))
+```
+
 ### Скрити цени
 
 - Доставчикът предлага да достави допълнителни 10 кг. кубинско кафе на цена от
@@ -432,21 +596,22 @@ $$
 
 ## Пример (3)
 
-Фирма произвежда два вида изделия -- А и Б и разполага с 600 единици
-електроенергия, 480 единици мед и 750 кг. желязо.
+Фирма произвежда два вида месингови изделия -- А и Б и разполага с 600 kWh
+електроенергия, 480 кг. мед и 750 кг. цинк.
 Разходите за електроенергия и метали са дадени в таблица \@ref(tab:example-prod-table).
 Намерете максималния приход, който може да реализира фирмата при следните два сценария.
 
 ```{r example-prod-table}
 exmpl_3_tbl <- tibble(
-  `Ресурс` = c("Ел. енергия", "Мед", "Желязо"),
+  `Ресурс` = c("Ел. енергия", "Мед", "Цинк"),
   `А` = c(3, 3, 4),
   `Б` = c(3, 2, 1)
 )
 exmpl_3_tbl %>%
-  knitr::kable() %>%
+  knitr::kable(caption = "Разходи на ел. енергия и метали.") %>%
   kableExtra::kable_styling()
 ```
+
 ### Допустимо множество
 
 $$
@@ -457,9 +622,9 @@ $$
 $$
 $$
 \begin{align}
-  3 x_1 + 3 x_2 & \leq 600\\
-  3 x_1 + 2 x_2 & \leq 480 \\
-  4 x_1 + 1 x_2 & \leq 750\\
+  3 x_1 + 3 x_2 & \leq 600 \text{ (ел. енергия)}\\
+  3 x_1 + 2 x_2 & \leq 480 \text{ (мед)}\\
+  4 x_1 + 1 x_2 & \leq 750 \text{ (цинк)}\\
   x_1 \geq 0 \\
   x_2 \geq 0
 \end{align}
@@ -490,10 +655,12 @@ exmpl_3_fset_plt <- tribble(
   ) +
   labs(
     x = expression(paste(x[1], " брой от продукт А")),
-    y = expression(paste(x[2], " брой от продукт Б"))
+    y = expression(paste(x[2], " брой от продукт Б")),
+    colour = "Ограничение"
   )
 exmpl_3_fset_plt
 ```
+
 Допустимото множество е полигонът с върхове: (0, 0), пресечната точка на "мед" и
 оста $x_1$: (160, 0), пресечната точка на "мед" и "ел. енергия" и пресечната точка на "ел. енергия" 
 с оста $x_2$.
@@ -504,7 +671,7 @@ exmpl_3_fset_plt
 $$
 \begin{align}
   3 x_1 + 3 x_2 & = 600\\
-  3 x_1 + 2 x_2 & = 480
+  3 x_1 + 2 x_2 & = 480.
 \end{align}
 $$
 
@@ -514,23 +681,18 @@ $$
 за да го илюстрираме (двата подхода са еквивалентни):
 
 
-<!-- ```{theorem, cramer, name="Правило на Крамер"} -->
-<!-- За система от линейни уравнения -->
+::: {.theorem name="Формули на Крамер"}
+За система от линейни уравнения
 
-
-<!-- ``` -->
-
-Правилото на Крамер гласи, че за система от линейни уравнения
 $$
 \begin{equation}
   \left | \begin{array}{@{}l@{}}
-    a x_1 + b x_2 & = c \\
-    d x_1 + e x_2 & = f
-  \end{array}
+    a_{11} x_1 + a_{12} x_2 & = b_1 \\
+    a_{21} x_1 + a_{22} x_2 & = b_2
+  \end{array}\right.\,,
 \end{equation}
 $$
-<!-- \right.\,. -->
-решението на системата е дадено от:
+решението на системата (ако съществува едно решение) е дадено от:
 
 $$
 \begin{align}
@@ -543,23 +705,43 @@ $$
 $$
 \Delta = \left| 
   \begin{array}{cc}
-    a & b \\
-    d & e
+    a_{11} & a_{12} \\
+    a_{22} & a_{22}
   \end{array}
 \right|,
 \Delta_1 = \left |
   \begin{array}{cc}
-    c & b \\
-    f & e
+    b_1 & a_{21} \\
+    b_2 & a_{22}
   \end{array}
 \right |,
 \Delta_2 = \left |
   \begin{array}{cc}
-    a & c \\
-    d & f
+    a_{11} & b_1 \\
+    a_{21} & b_2
   \end{array}
-\right |
+\right |.\,
 $$
+
+Ако $\Delta = 0$, тогава двете уравнения в системата са линейно зависими, което означава,
+че правите, дефинирани от уравненията са успоредни.
+:::
+
+
+<!-- ```{r} -->
+<!-- M <- matrix(c( -->
+<!--   1, 2, 3, -->
+<!--   2, 4, 6, -->
+<!--   7, 1, 2 -->
+<!-- ), byrow = TRUE, ncol = 3) -->
+
+<!-- M -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- det(M) -->
+<!-- ``` -->
+<!-- dfsdf -->
+
 
 Приложено в конкретния пример получаваме:
 
@@ -612,19 +794,19 @@ b <- c(9, 9)
 ```
 
 ```{r}
-gMOIP::plotPolytope(
-  A = A,
-  b = r,
-  obj = b,
-  crit = "max",
-  plotFeasible = TRUE,
-  # plotOptimum = TRUE,
-  labels = "coord",
-  plotFaces = TRUE) +
-  labs(
-    x = expression(paste(x[1], " брой от продукт А")),
-    y = expression(paste(x[2], " брой от продукт Б"))
-  )
+# gMOIP::plotPolytope(
+#   A = A,
+#   b = r,
+#   obj = b,
+#   crit = "max",
+#   plotFeasible = TRUE,
+#   # plotOptimum = TRUE,
+#   labels = "coord",
+#   plotFaces = TRUE) +
+#   labs(
+#     x = expression(paste(x[1], " брой от продукт А")),
+#     y = expression(paste(x[2], " брой от продукт Б"))
+#   )
 ```
 
 ```{r}
@@ -650,7 +832,9 @@ exmpl_3_fset_plt +
       slope = - 9 / 8,
       linetype = 2
   ) +
-  annotate("text", x = 19, y = 145 - y_offset, label = "z = 5000", size = 3)
+  annotate("text", x = 19, y = 180 - y_offset, label = "z=1680", size = 3) +
+  annotate("text", x = 19, y = 145 - y_offset, label = "z=1000", size = 3) +
+  annotate("text", x = 19, y = 80 - y_offset, label = "z=500", size = 3)
 ```
 
 ### Сценарий 2
@@ -773,9 +957,4 @@ tribble(
       colour = "Ограничение"
     )
 ```
-
-
-
-
-
 
