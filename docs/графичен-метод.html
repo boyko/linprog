@@ -550,16 +550,17 @@ z = 40x_1 + 50x_2 = 10000
 <!-- ```{theorem, cramer, name="Правило на Крамер"} -->
 <!-- За система от линейни уравнения -->
 <!-- ``` -->
-<p>Правилото на Крамер гласи, че за система от линейни уравнения</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-1" class="theorem"><strong>Теорема 2.1  (Формули на Крамер) </strong></span>За система от линейни уравнения</p>
 <p><span class="math display">\[
 \begin{equation}
   \left | \begin{array}{@{}l@{}}
-    a x_1 + b x_2 &amp; = c \\
-    d x_1 + e x_2 &amp; = f
+    a_{11} x_1 + a_{12} x_2 &amp; = b_1 \\
+    a_{21} x_1 + a_{22} x_2 &amp; = b_2
   \end{array}\right.\,.
 \end{equation}
 \]</span>
-решението на системата е дадено от:</p>
+решението на системата (ако съществува едно решение) е дадено от:</p>
 <p><span class="math display">\[
 \begin{align}
   x^*_1 = \frac{\Delta_1}{\Delta}\\
@@ -570,23 +571,38 @@ z = 40x_1 + 50x_2 = 10000
 <p><span class="math display">\[
 \Delta = \left| 
   \begin{array}{cc}
-    a &amp; b \\
-    d &amp; e
+    a_{11} &amp; a_{12} \\
+    a_{22} &amp; a_{22}
   \end{array}
 \right|,
 \Delta_1 = \left |
   \begin{array}{cc}
-    c &amp; b \\
-    f &amp; e
+    b_1 &amp; a_{21} \\
+    b_2 &amp; a_{22}
   \end{array}
 \right |,
 \Delta_2 = \left |
   \begin{array}{cc}
-    a &amp; c \\
-    d &amp; f
+    a_{11} &amp; b_1 \\
+    a_{21} &amp; b_2
   \end{array}
 \right |
-\]</span></p>
+\]</span>
+Ако <span class="math inline">\(\Delta = 0\)</span>, тогава двете уравнения в системата са линейно зависими, което означава,
+че правите, дефинирани от уравненията са успоредни.</p>
+</div>
+<!-- ```{r} -->
+<!-- M <- matrix(c( -->
+<!--   1, 2, 3, -->
+<!--   2, 4, 6, -->
+<!--   7, 1, 2 -->
+<!-- ), byrow = TRUE, ncol = 3) -->
+<!-- M -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- det(M) -->
+<!-- ``` -->
+<!-- dfsdf -->
 <p>Приложено в конкретния пример получаваме:</p>
 <p><span class="math display">\[
 \begin{align}

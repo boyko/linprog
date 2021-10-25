@@ -3,6 +3,7 @@ fig:unnamed-chunk-2
 fig:unnamed-chunk-3
 fig:feasible-set-lines
 fig:feasible-set
+thm:unlabeled-div-1
 въведение-в-линейното-програмиране
 софтуер
 пример-1-берлински-въздушен-мост
