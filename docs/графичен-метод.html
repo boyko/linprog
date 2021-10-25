@@ -354,34 +354,381 @@ z = 40x_1 + 50x_2 = 10000
 <div id="реализация-в-excel" class="section level3" number="2.1.5">
 <h3><span class="header-section-number">2.1.5</span> Реализация в <code>Excel</code></h3>
 <p>Тук можете да изтеглите <a href="https://github.com/boyko/linprog/raw/main/exel/Problem_2_coffee_blending.xlsx">пример за реализация в Excel</a>.</p>
+<p>Съдържание на “Answer report”</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-16">Таблица 2.1: </span>Objective cell
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Cell
+</th>
+<th style="text-align:left;">
+Name
+</th>
+<th style="text-align:right;">
+Original Value
+</th>
+<th style="text-align:right;">
+Final Value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+$E$3
+</td>
+<td style="text-align:left;">
+Order Profit
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+12000
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-17">Таблица 2.2: </span>Variable cells
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Cell
+</th>
+<th style="text-align:left;">
+Name
+</th>
+<th style="text-align:right;">
+Original Value
+</th>
+<th style="text-align:right;">
+Final Value
+</th>
+<th style="text-align:left;">
+Integer
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+$B$3
+</td>
+<td style="text-align:left;">
+Order Super
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:left;">
+Contin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+$C$3
+</td>
+<td style="text-align:left;">
+Order Delux
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:left;">
+Contin
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-18">Таблица 2.3: </span>Constraints
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Cell
+</th>
+<th style="text-align:left;">
+Name
+</th>
+<th style="text-align:right;">
+Cell Value
+</th>
+<th style="text-align:left;">
+Formula
+</th>
+<th style="text-align:left;">
+Status
+</th>
+<th style="text-align:right;">
+Slack
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+$D$7
+</td>
+<td style="text-align:left;">
+Brazilian Used
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:left;">
+$D<span class="math inline">\(7&amp;lt;=\)</span>E$7
+</td>
+<td style="text-align:left;">
+Binding
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+$D$8
+</td>
+<td style="text-align:left;">
+Cuban Used
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:left;">
+$D<span class="math inline">\(8&amp;lt;=\)</span>E$8
+</td>
+<td style="text-align:left;">
+Binding
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+$D$9
+</td>
+<td style="text-align:left;">
+Demand Used
+</td>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:left;">
+$D<span class="math inline">\(9&amp;lt;=\)</span>E$9
+</td>
+<td style="text-align:left;">
+Not Binding
+</td>
+<td style="text-align:right;">
+70
+</td>
+</tr>
+</tbody>
+</table>
+<p>Съдържание на “Sensitivity report”</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-20">Таблица 2.4: </span>Sensitivity report: variable cells.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Cell
+</th>
+<th style="text-align:left;">
+Name
+</th>
+<th style="text-align:right;">
+Final value
+</th>
+<th style="text-align:right;">
+Reduced Cost
+</th>
+<th style="text-align:right;">
+Objective Coefficient
+</th>
+<th style="text-align:right;">
+Allowable Increase
+</th>
+<th style="text-align:right;">
+Allowable Decrease
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+$B$3
+</td>
+<td style="text-align:left;">
+Order Super
+</td>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:right;">
+6.666667
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+$C$3
+</td>
+<td style="text-align:left;">
+Order Delux
+</td>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+30.000000
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-21">Таблица 2.5: </span>Sensitivity report: constraints.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Cell
+</th>
+<th style="text-align:left;">
+Name
+</th>
+<th style="text-align:right;">
+Final value
+</th>
+<th style="text-align:right;">
+Reduced Cost
+</th>
+<th style="text-align:right;">
+Objective Coefficient
+</th>
+<th style="text-align:right;">
+Allowable Increase
+</th>
+<th style="text-align:right;">
+Allowable Decrease
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+$D$7
+</td>
+<td style="text-align:left;">
+Brazilian Used
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+120
+</td>
+<td style="text-align:right;">
+4.0e+01
+</td>
+<td style="text-align:right;">
+35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+$D$8
+</td>
+<td style="text-align:left;">
+Cuban Used
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:right;">
+160
+</td>
+<td style="text-align:right;">
+3.5e+01
+</td>
+<td style="text-align:right;">
+40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+$D$9
+</td>
+<td style="text-align:left;">
+Demand Used
+</td>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+150
+</td>
+<td style="text-align:right;">
+1.0e+30
+</td>
+<td style="text-align:right;">
+70
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="реализация-в-r" class="section level3" number="2.1.6">
 <h3><span class="header-section-number">2.1.6</span> Реализация в <code>R</code></h3>
-<!-- ```{r} -->
-<!-- result <- lpSolve::lp( -->
-<!--   direction = "max", ## Вид оптимизация: min/max -->
-<!--   objective.in = b, ## Objective, коефициенти на целевата функция -->
-<!--   const.mat = A, ## Constraints matrix, матрица с коефициенти на ограниченията -->
-<!--   const.dir = "<=", ## Constraints direction, посока на неравенствата -->
-<!--   const.rhs = r, ## Right hand side, дясна страна на ограниченията -->
-<!--   compute.sens=TRUE -->
-<!-- ) -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- result -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- result$solution -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- result$duals -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- result$duals.from -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- result$duals.to -->
-<!-- ``` -->
+<pre><code>## Success: the objective function is 12000</code></pre>
+<pre><code>## [1] 200  80</code></pre>
+<pre><code>## [1] 20 60  0  0  0</code></pre>
+<pre><code>## [1]  8.5e+01  1.2e+02 -1.0e+30 -1.0e+30 -1.0e+30</code></pre>
+<pre><code>## [1] 1.60e+02 1.95e+02 1.00e+30 1.00e+30 1.00e+30</code></pre>
 <!-- ```{r} -->
 <!-- result$sens.coef.from -->
 <!-- ``` -->
@@ -423,6 +770,23 @@ z = 40x_1 + 50x_2 = 10000
 <li><p>В какви граници може да се променя ограничението за търсенето на Супер еспресо кафе без
 да се промени характера на оптималния план (без да се променят дефицитните ресурси)?</p></li>
 </ul>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
+<p><img src="linprog_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+Пресечната точка на уравненията към “Търсене Делукс” и “Бразилско кафе” намираме
+като решение на системата от две уравнения:</p>
+<p><span class="math display">\[
+\begin{align}
+    0.5 x_1 + 0.25 x_2 &amp; = 120 \\
+    0 \cdot x_1 + x_2 &amp; = 150
+\end{align}
+\]</span></p>
+<pre><code>## x1    =  165 
+##   x2  =  150</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]  0.5 0.25
+## [2,]  0.5 0.75</code></pre>
+<pre><code>## x1    =  180 
+##   x2  =  120</code></pre>
 </div>
 <div id="скрити-цени" class="section level3" number="2.1.9">
 <h3><span class="header-section-number">2.1.9</span> Скрити цени</h3>
@@ -462,11 +826,11 @@ z = 40x_1 + 50x_2 = 10000
 <h2><span class="header-section-number">2.3</span> Пример (3)</h2>
 <p>Фирма произвежда два вида месингови изделия – А и Б и разполага с 600 kWh
 електроенергия, 480 кг. мед и 750 кг. цинк.
-Разходите за електроенергия и метали са дадени в таблица <a href="графичен-метод.html#tab:example-prod-table">2.1</a>.
+Разходите за електроенергия и метали са дадени в таблица <a href="графичен-метод.html#tab:example-prod-table">2.6</a>.
 Намерете максималния приход, който може да реализира фирмата при следните два сценария.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:example-prod-table">Таблица 2.1: </span>Разходи на ел. енергия и метали.
+<span id="tab:example-prod-table">Таблица 2.6: </span>Разходи на ел. енергия и метали.
 </caption>
 <thead>
 <tr>
@@ -534,8 +898,8 @@ z = 40x_1 + 50x_2 = 10000
   x_2 \geq 0
 \end{align}
 \]</span></p>
-<p><img src="linprog_files/figure-html/unnamed-chunk-15-1.png" width="672" />
-Допустимото множество е полигонът с върхове: (0, 0), пресечната точка на “мед” и
+<p><img src="linprog_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>Допустимото множество е полигонът с върхове: (0, 0), пресечната точка на “мед” и
 оста <span class="math inline">\(x_1\)</span>: (160, 0), пресечната точка на “мед” и “ел. енергия” и пресечната точка на “ел. енергия”
 с оста <span class="math inline">\(x_2\)</span>.</p>
 <p>Пресечната точка на “мед” и “ел. енергия” можем да намерим, като решим системата
@@ -565,7 +929,7 @@ z = 40x_1 + 50x_2 = 10000
 \begin{align}
   x^*_1 = \frac{\Delta_1}{\Delta}\\
   x^*_2= \frac{\Delta_2}{\Delta}
-\end{align}\right.\,,
+\end{align}
 \]</span>
 където <span class="math inline">\(\Delta_1\)</span>, <span class="math inline">\(\Delta_2\)</span> и <span class="math inline">\(\Delta\)</span> са детерминантите:</p>
 <p><span class="math display">\[
@@ -635,13 +999,13 @@ z = 40x_1 + 50x_2 = 10000
 Намерете максималния приход, който може да реализира фирмата.</p>
 <p>Целева функция</p>
 <p>Решение:</p>
-<p><img src="linprog_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 </div>
 <div id="сценарий-2" class="section level3" number="2.3.3">
 <h3><span class="header-section-number">2.3.3</span> Сценарий 2</h3>
 <p>Цента и на двата продукта е 9 единици. Намерете максималния
 приход, който може да реализира фирмата.</p>
-<p><img src="linprog_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<p><img src="linprog_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 Оптимални са всички комбинации от <span class="math inline">\(x_1\)</span> и <span class="math inline">\(x_2\)</span>, които лежат на отсечката (0, 200), (80, 120):</p>
 <p><span class="math display">\[
 \left(
@@ -666,7 +1030,7 @@ z = 40x_1 + 50x_2 = 10000
 x_1 \geq 0\\
 x_2 \geq 0
 \]</span></p>
-<p><img src="linprog_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 </div>
 <div id="пример-5" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Пример (5)</h2>
@@ -678,7 +1042,7 @@ x_2 \geq 2 \\
 x_1 \geq 0\\
 x_2 \geq 0
 \]</span></p>
-<p><img src="linprog_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
 
 </div>
 </div>
