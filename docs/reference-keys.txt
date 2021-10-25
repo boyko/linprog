@@ -3,6 +3,7 @@ fig:unnamed-chunk-2
 fig:unnamed-chunk-3
 fig:feasible-set-lines
 fig:feasible-set
+tab:example-prod-table
 thm:unlabeled-div-1
 въведение-в-линейното-програмиране
 софтуер
