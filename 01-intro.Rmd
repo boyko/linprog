@@ -331,7 +331,7 @@ $$
 
 ### Реализация в `Excel`
 
-Тук можете да изтеглите [пример за реализация в Excel](https://github.com/boyko/linprog/raw/main/exel/Problem_2_coffee_blending.xlsx).
+Тук можете да изтеглите [пример за реализация в Excel](https://github.com/boyko/linprog/raw/main/excel/Problem_2_coffee_blending.xlsx).
 
 Съдържание на "Answer report"
 
