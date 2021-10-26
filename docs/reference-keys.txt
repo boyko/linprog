@@ -11,6 +11,8 @@ tab:unnamed-chunk-17
 tab:unnamed-chunk-18
 tab:unnamed-chunk-20
 tab:unnamed-chunk-21
+fig:p-2-constr-cuban-1
+fig:p-2-constr-cuban-2
 fig:p-2-constr-cuban
 tab:example-prod-table
 thm:unlabeled-div-1
