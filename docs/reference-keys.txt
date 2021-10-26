@@ -6,13 +6,14 @@ eq:p-2-constr-cuban
 eq:p-2-constr-demand
 fig:feasible-set-lines
 fig:feasible-set
+fig:p-2-solution
+tab:unnamed-chunk-15
 tab:unnamed-chunk-16
 tab:unnamed-chunk-17
-tab:unnamed-chunk-18
+tab:unnamed-chunk-19
 tab:unnamed-chunk-20
-tab:unnamed-chunk-21
-fig:p-2-constr-cuban-1
 fig:p-2-constr-cuban-2
+fig:p-2-constr-cuban-1
 fig:p-2-constr-cuban
 tab:example-prod-table
 thm:unlabeled-div-1

@@ -330,7 +330,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">2.1.3</span> Целева функция, нормален вектор</h3>
 <p>За да определим оптималния план графично ще начертаем прави, съответстващи на
 различни нива на печалба.</p>
-<p><img src="linprog_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="figure"><span style="display:block;" id="fig:p-2-solution"></span>
+<img src="linprog_files/figure-html/p-2-solution-1.png" alt="Графично решение." width="672" />
+<p class="caption">
+Графика 2.3: Графично решение.
+</p>
+</div>
 <p>Всички комбинации <span class="math inline">\(x_1\)</span> и <span class="math inline">\(x_2\)</span>, за които печалбата (целевата функция) е равна на 5000 лв лежат на права,
 определена от равенството:</p>
 <p><span class="math display">\[
@@ -359,7 +364,7 @@ z = 40x_1 + 50x_2 = 10000
 <p>Съдържание на “Answer report”</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-16">Таблица 2.1: </span>Objective cell
+<span id="tab:unnamed-chunk-15">Таблица 2.1: </span>Objective cell
 </caption>
 <thead>
 <tr>
@@ -396,7 +401,7 @@ Order Profit
 </table>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-17">Таблица 2.2: </span>Variable cells
+<span id="tab:unnamed-chunk-16">Таблица 2.2: </span>Variable cells
 </caption>
 <thead>
 <tr>
@@ -456,7 +461,7 @@ Contin
 </table>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-18">Таблица 2.3: </span>Constraints
+<span id="tab:unnamed-chunk-17">Таблица 2.3: </span>Constraints
 </caption>
 <thead>
 <tr>
@@ -546,7 +551,7 @@ Not Binding
 <p>Съдържание на “Sensitivity report”</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-20">Таблица 2.4: </span>Sensitivity report: variable cells.
+<span id="tab:unnamed-chunk-19">Таблица 2.4: </span>Sensitivity report: variable cells.
 </caption>
 <thead>
 <tr>
@@ -624,7 +629,7 @@ Order Delux
 </table>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-21">Таблица 2.5: </span>Sensitivity report: constraints.
+<span id="tab:unnamed-chunk-20">Таблица 2.5: </span>Sensitivity report: constraints.
 </caption>
 <thead>
 <tr>
@@ -810,42 +815,43 @@ Demand Used
 <li><p>В какви граници може да се променя ограничението за търсенето на Супер еспресо кафе без
 да се промени характера на оптималния план (без да се променят дефицитните ресурси)?</p></li>
 </ul>
-<div class="figure"><span style="display:block;" id="fig:p-2-constr-cuban-1"></span>
-<img src="linprog_files/figure-html/p-2-constr-cuban-1-1.png" alt="Допустимо множество и оптимум при различни нива на разполагаемо кубинско кафе: 120 кг. (първоначална стойност в задачата), и 220 кг." width="672" />
-<p class="caption">
-Графика 2.3: Допустимо множество и оптимум при различни нива на разполагаемо кубинско кафе: 120 кг. (първоначална стойност в задачата), и 220 кг.
-</p>
-</div>
+<p>За да видим как се променя решението на задачата, когато варираме наличното
+количество кубинско кафе, ще я решим графично при четири нива на наличност
+на ресурса: 120 кг., 180 кг., 195 кг. и 220 кг. Уравненията на ограниченията
+за всяко от тези нива са:</p>
+<p><span class="math display">\[
+\begin{aligned}
+  0.5 x_1 + 0.75 x_2 &amp; = 160 \text{ налични 160 кг. (първоначална задача)} \\
+  0.5 x_1 + 0.75 x_2 &amp; = 180 \text{ налични 180 кг.} \\
+  0.5 x_1 + 0.75 x_2 &amp; = 220 \text{ налични 220 кг.} \\
+  0.5 x_1 + 0.75 x_2 &amp; = 195 \text{ налични 195 кг.} \\
+\end{aligned}
+\]</span></p>
+<p>Първото от тези нива е първоначалното ниво в задачата, която решихме използвайки графика <a href="графичен-метод.html#fig:p-2-solution">2.3</a>.</p>
+<p>За втория случай графика <a href="графичен-метод.html#fig:p-2-constr-cuban-2">2.4</a> показва решението при
+180 кг. налично кубинско кафе. Оптималната комбинация от Супер и Делукс еспресо
+е (180, 120) при печалба от <span class="math inline">\(40 \cdot 180 + 50 \cdot 120 = 13200\)</span> лв. Дефицитните
+ресурси отново са “бразилско кафе” и “кубинско кафе”, т.е. характерът на
+решението не се променя спрямо първоначалната задача.</p>
 <div class="figure"><span style="display:block;" id="fig:p-2-constr-cuban-2"></span>
 <img src="linprog_files/figure-html/p-2-constr-cuban-2-1.png" alt="Допустимо множество и оптимум при различни нива на разполагаемо кубинско кафе: 120 кг. (първоначална стойност в задачата), и 220 кг." width="672" />
 <p class="caption">
 Графика 2.4: Допустимо множество и оптимум при различни нива на разполагаемо кубинско кафе: 120 кг. (първоначална стойност в задачата), и 220 кг.
 </p>
 </div>
-<div class="figure"><span style="display:block;" id="fig:p-2-constr-cuban"></span>
-<img src="linprog_files/figure-html/p-2-constr-cuban-1.png" alt="Допустимо множество и оптимум при различни нива на разполагаемо кубинско кафе: 120 кг. (първоначална стойност в задачата), и 220 кг." width="672" />
-<p class="caption">
-Графика 2.5: Допустимо множество и оптимум при различни нива на разполагаемо кубинско кафе: 120 кг. (първоначална стойност в задачата), и 220 кг.
-</p>
-</div>
-<p>Нека да начертаем правите на “кубинско кафе” при четири нива на наличност
-на ресурса: 120 кг., 180 кг., 195 кг. и 220 кг. Уравненията за всяко от
-тези нива са:</p>
-<p><span class="math display">\[
-0.5 x_1 + 0.75 x_2 = 160 \\
-0.5 x_1 + 0.75 x_2 = 180 \\
-0.5 x_1 + 0.75 x_2 = 195 \\
-0.5 x_1 + 0.75 x_2 = 220 \\
-\]</span>
-и в графика <a href="графичен-метод.html#fig:p-2-constr-cuban">2.5</a> са представени с четирите оранжеви прави.</p>
+<p>За третия случай графика <a href="графичен-метод.html#fig:p-2-constr-cuban-1">2.5</a> показва решението при
+220 кг. налично кубинско кафе. Пресечната точка на правите към “бразилско кафе”
+и “кубинско кафе” при (140, 200) този път не е оптимален план, защото не принадлежи
+към допустимото множество, тъй като не изпълнява ограничението за търсене на Делукс
+(<span class="math inline">\(200 \nleq 150\)</span>).</p>
 <p>От графиката виждаме, че при наличие на кубинско кафе от повече от 195 кг.
 се променя характера на оптимума, защото дефицитни стават ресурсите
 “бразилско кафе” и “търсене Делукс”. Разликата между 195 кг. и първоначално
 наличните в задачата 160 кг. наричаме допустимо увеличение на ресурса
-(195 - 160 = 35 кг.).</p>
-<p>Пресечната точка на уравненията към “Търсене Делукс” и “Бразилско кафе” намираме
-като решение на системата от двете уравнения
-<a href="графичен-метод.html#eq:p-2-constr-brazilian">(2.1)</a> и <a href="графичен-метод.html#eq:p-2-constr-demand">(2.3)</a>:</p>
+(195 - 160 = 35 кг.). Новият оптимум е пресечната точка на
+“бразилско кафе” и “търсене Делукс”. Можем да намерим координатите на тази точка
+като решение на системата от двете уравнения <a href="графичен-метод.html#eq:p-2-constr-brazilian">(2.1)</a>
+и <a href="графичен-метод.html#eq:p-2-constr-demand">(2.3)</a>:</p>
 <p><span class="math display">\[
 \begin{equation}
   \left | \begin{array}{@{}l@{}}
@@ -855,7 +861,27 @@ Demand Used
 \end{equation}
 \]</span></p>
 <p>Решението на системата е
-(165, 150).</p>
+(165, 150). За разлика от
+оптимумите при 160 кг. и 180 кг. кубинско кафе, сега дефицитните ресурси
+са “бразилско кафе” и “търсене Делукс”.</p>
+<div class="figure"><span style="display:block;" id="fig:p-2-constr-cuban-1"></span>
+<img src="linprog_files/figure-html/p-2-constr-cuban-1-1.png" alt="Допустимо множество и оптимум при различни нива на разполагаемо кубинско кафе: 120 кг. (първоначална стойност в задачата), и 220 кг." width="672" />
+<p class="caption">
+Графика 2.5: Допустимо множество и оптимум при различни нива на разполагаемо кубинско кафе: 120 кг. (първоначална стойност в задачата), и 220 кг.
+</p>
+</div>
+<p>В четвъртия случай при наличие на 195 кг. кубинско кафе допустимото множество съвпада
+с това в предходня пример при 220 кг. (графика <a href="графичен-метод.html#fig:p-2-constr-cuban">2.6</a>). По тази
+причина и оптимумът е същият: (165, 150) при ниво на печалба <span class="math inline">\(40 \cdot 165 + 50 \cdot 150 = 14100\)</span> лв.</p>
+<div class="figure"><span style="display:block;" id="fig:p-2-constr-cuban"></span>
+<img src="linprog_files/figure-html/p-2-constr-cuban-1.png" alt="Допустимо множество и оптимум при различни нива на разполагаемо кубинско кафе: 120 кг. (първоначална стойност в задачата), и 220 кг." width="672" />
+<p class="caption">
+Графика 2.6: Допустимо множество и оптимум при различни нива на разполагаемо кубинско кафе: 120 кг. (първоначална стойност в задачата), и 220 кг.
+</p>
+</div>
+<p>От тези примери виждаме, че количеството кубинско кафе може да се увеличи с
+най-много <span class="math inline">\(195 - 160 = 35\)</span> кг. без да се промени характера на оптимума.
+Това количество наричаме допустимо увеличение (allowable increase).</p>
 <!-- ```{r} -->
 <!-- A[-3, ] -->
 <!-- Solve(A[-3, ], c(120, 220)) -->
@@ -971,7 +997,7 @@ Demand Used
   x_2 \geq 0
 \end{align}
 \]</span></p>
-<p><img src="linprog_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>Допустимото множество е полигонът с върхове: (0, 0), пресечната точка на “мед” и
 оста <span class="math inline">\(x_1\)</span>: (160, 0), пресечната точка на “мед” и “ел. енергия” и пресечната точка на “ел. енергия”
 с оста <span class="math inline">\(x_2\)</span>.</p>
@@ -1072,13 +1098,13 @@ Demand Used
 Намерете максималния приход, който може да реализира фирмата.</p>
 <p>Целева функция</p>
 <p>Решение:</p>
-<p><img src="linprog_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 </div>
 <div id="сценарий-2" class="section level3" number="2.3.3">
 <h3><span class="header-section-number">2.3.3</span> Сценарий 2</h3>
 <p>Цента и на двата продукта е 9 единици. Намерете максималния
 приход, който може да реализира фирмата.</p>
-<p><img src="linprog_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<p><img src="linprog_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 Оптимални са всички комбинации от <span class="math inline">\(x_1\)</span> и <span class="math inline">\(x_2\)</span>, които лежат на отсечката (0, 200), (80, 120):</p>
 <p><span class="math display">\[
 \left(
@@ -1103,7 +1129,7 @@ Demand Used
 x_1 \geq 0\\
 x_2 \geq 0
 \]</span></p>
-<p><img src="linprog_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 </div>
 <div id="пример-5" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Пример (5)</h2>
@@ -1115,7 +1141,7 @@ x_2 \geq 2 \\
 x_1 \geq 0\\
 x_2 \geq 0
 \]</span></p>
-<p><img src="linprog_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p><img src="linprog_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 
 </div>
 </div>
