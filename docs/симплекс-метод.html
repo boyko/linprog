@@ -211,15 +211,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   &amp; x_1, x_2, x_3 \geq 0
 \end{aligned}
 \]</span></p>
+$$
+<span class="math display">\[\begin{aligned}
+  &amp; \max z = -x_1 + x_2 - 3x_3\\
+  &amp; 2x_1 - x_2 + 3x_3 + s_1 = 5\\
+  &amp; x_1 + 2 x_2 = 8\\
+  &amp; -x_1 - 2x_2 -s_2 = 1\\
+  &amp; x_1, x_2, x_3, s_1, s_2 \geq 0 \\
+  
+\end{aligned}\]</span>
+<p>$$</p>
+<!-- $$ -->
+<!-- \begin{aligned} -->
+<!--   & \max z = - x_1 + x_2 - 3x_3\\ -->
+<!--   & 2x_1 - x_2 + 3x_3 + s_1 =  5\\ -->
+<!--   & x_1 + 2x_3 = 8 \\ -->
+<!--   & -x_1 - 2x_2 - s_2 = 1 \\ -->
+<!--   & x_1, x_2, x_3, s_1 \geq 0 \\ -->
+<!-- \end{aligned} -->
+<!-- $$ -->
 <p><em>Пример 2</em></p>
 <p><span class="math display">\[
 \begin{aligned}
-  &amp; \max z = 2x_1 + x_2 - x_3\\
-  &amp; x_1 - 2x_2 + x_3 \geq 4\\
-  &amp; x_1 + x_2 - 3x_3 \leq 9 \\
-  &amp; x_1 + x_2 + 2x_3 = 10 \\
-  &amp; x_1, x_3 \geq 0
+  &amp; \max z = 2x_1 + (x_2^{+} - x_{2}^{-}) - x_3\\
+  &amp; x_1 - 2(x_2^{+} - x_{2}^{-}) + x_3 -s_1 = 4\\
+  &amp; x_1 + (x_2^{+} - x_{2}^{-}) - 3x_3 + s_2 = 9 \\
+  &amp; x_1 + (x_2^{+} - x_{2}^{-}) + 2x_3 = 10 \\
+  &amp; x_1, x_3, x_2^{+}, x_{2}^{-} \geq 0
 \end{aligned}
+\]</span></p>
+<p>$x_2 = $ не е ограничена.</p>
+<p><span class="math display">\[
+x_2 = x_2^{+} - x_{2}^{-}\\
+x_2 = x_2^{&#39;} - x_{2}^{&#39;&#39;} \text{ същото, но с нотацията от учебика}
 \]</span></p>
 <!-- ## Опорен план -->
 <!-- $$ -->
@@ -233,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="симплекс-алгоритъм-1" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Симплекс алгоритъм (1)</h2>
-<p><span class="math display">\[
+<p><span class="math display">\[  
 x_1: \text{светла бира (л.)}\\
 x_2: \text{тъмна бира (л.)}\\
 Ресурси: хмел, малц
@@ -245,14 +269,169 @@ x_2: \text{тъмна бира (л.)}\\
 x_1 + 2x_2 \leq 8 \text{ Хмел}\\
 x_1, x_2 \ge 0\\
 \]</span></p>
-<p>Каноничен вид
+$$
+Ax r\
+A(
+<span class="math display">\[\begin{array}{c}x_1\\ x_2\end{array}\]</span>
+) 
+(
+<span class="math display">\[\begin{array}{c}10\\ 8\end{array}\]</span>
+<p>) \</p>
+(
+<span class="math display">\[\begin{array}{cc}
+    a_{11} &amp; a_{12} \\
+    a_{21} &amp; a_{22} 
+  \end{array}\]</span>
+<p>)</p>
+(
+<span class="math display">\[\begin{array}{c}x_1\\ x_2\end{array}\]</span>
+) 
+(
+<span class="math display">\[\begin{array}{c}10\\ 8\end{array}\]</span>
+) \
+(
+<span class="math display">\[\begin{array}{c}
+    a_{11}x_1 + a_{12}x_2 \\
+    a_{21}x_1 + a_{22}x_2
+  \end{array}\]</span>
+<p>)</p>
+(
+<span class="math display">\[\begin{array}{c}10\\ 8\end{array}\]</span>
+) \
+(
+<span class="math display">\[\begin{array}{c}
+    2x_1 + 1x_2 \\
+    1x_1 + 2x_2
+  \end{array}\]</span>
+<p>)</p>
+(
+<span class="math display">\[\begin{array}{c}10\\ 8\end{array}\]</span>
+<p>)\
+$$</p>
+<p><span class="math display">\[
+Ax \leq r\\
+r = \left(
+  \begin{array}{c}10 \\ 8\end{array}
+\right) 
+x = \left(
+  \begin{array}{c}x_1\\ x_2\end{array}
+\right) 
+A = \left(
+  \begin{array}{cc}
+    2 &amp; 1 \\
+    1 &amp; 2
+  \end{array}
+\right)
+\]</span>
+Каноничен вид на задачата, записан с матрици:
 <span class="math display">\[
-\max Z(x) = 5x_1 + 5x_2\\
-\\
-2x_1 + x_2 +s_1 + 0s_2= 10 \text{ Малц}\\
-x_1 + 2x_2 +0s_1 + s_2 = 8 \text{ Хмел}\\
-x_1, x_2, s_1, s_2 \ge 0\\
+A^{*}x = r\\
+A^{*} = \left(
+  \begin{array}{cc}
+    2 &amp; 1 &amp; 1 &amp; 0 \\
+    1 &amp; 2 &amp; 0 &amp; 1
+  \end{array}
+\right)
+\]</span>
+Ако фиксираме две от неизвестните, например <span class="math inline">\(s_1 = 10\)</span> и
+<span class="math inline">\(s_2 = 8\)</span>, тогава можем да решим системата от уравнения и ще получим стойности за <span class="math inline">\(x_1\)</span> и <span class="math inline">\(x_2\)</span>.</p>
+<p><span class="math display">\[
+s_1 = 10 \\
+s_2 = 8 \\
+x_1 = 0 \\
+x_2 = 0
 \]</span></p>
+<p><span class="math display">\[
+2x_1 + x_2 = 0 \implies x_1 = 0, x_2 = 0\\
+\]</span>
+Например</p>
+<p><span class="math display">\[
+x_1 = 1, x_2 = -2
+\]</span></p>
+<p>не е дупустимо решение на уравнението, защото <span class="math inline">\(x_1 \geq 0\)</span> и също така <span class="math inline">\(x_2 \geq 0\)</span>.</p>
+<p>Симплекс алгоритъма започва от каноничния вид на задачата</p>
+<p><span class="math display">\[
+\max Z = 5x_1 + 5x_2\\
+2x_1 + x_2 + s_1 = 10\\
+x_1 + 2x_2 + s_2 = 8\\
+x_1, x_2, s_1, s_2 \geq 0
+\]</span></p>
+<p><span class="math display">\[
+x_1 = 0, x_2 = 0, s_1 = 10, s_2 = 8 \\
+\]</span></p>
+<p><span class="math display">\[
+s_1 = 10 - (2x_1 + x_2)\\
+s_2 = 8 - (x_1 + 2x_2)\\
+\]</span>
+<span class="math display">\[
+Z = 0 + 5x_1 + 5x_2\\
+Z = 0 - (-5x_1 - 5x_2)
+\]</span></p>
+<p>Увеличаваме <span class="math inline">\(x_1\)</span>, но въпросът е с колко. <span class="math inline">\(x_2\)</span> остава равно на <span class="math inline">\(0\)</span>.</p>
+<p><span class="math display">\[
+s_1 = 10 - 2x_1 \\
+s_2 = 8 - x_1\\
+\]</span>
+Делим константите в уравненията на коефициентите на <span class="math inline">\(x_1\)</span>.</p>
+<p><span class="math display">\[
+10 / 2 = 5\\
+8 / 1 = 8
+\]</span>
+Взимаме най-малката стойност от всички ограничения: <span class="math inline">\(x_1 = 5\)</span>. С това получаваме
+следващото допустимо решение, което да изследваме за оптималност.</p>
+<p><span class="math display">\[
+x_1 = 5, x_2 = 0, s_1 = 0, s_2 = 3
+\]</span></p>
+<p><span class="math display">\[
+s_1 = 10 - 2x_1 - x_2\\
+s_2 = 8 - x_1 - 2x_2\\
+\]</span></p>
+<p><span class="math display">\[
+x_1 = 5 - \frac{1}{2}s_1 - \frac{1}{2}x_2\\
+s_2 = 8 - \left(5 - \frac{1}{2}s_1 - \frac{1}{2}x_2\right) - 2x_2
+\]</span></p>
+<p><span class="math display">\[
+x_1 = 5 - \frac{1}{2}s_1 - \frac{1}{2}x_2\\
+s_2 = 3 + \frac{1}{2}s_1 - 1.5x_2
+\]</span></p>
+<p><span class="math display">\[
+z = 5\left(5 - \frac{1}{2}s_1 - \frac{1}{2}x_2\right) + 5x_2\\
+z = 25 - \frac{5}{2}s_1 - \frac{5}{2}x_2 + 5x_2 \\
+\]</span>
+Целевата функция изразена само с нулеви променливи
+<span class="math display">\[
+z = 25 - \frac{5}{2}s_1 + 2.5x_2
+\]</span></p>
+<p><span class="math display">\[
+x_1 = 5 - \frac{1}{2}s_1 - \frac{1}{2}x_2\\
+s_2 = 3 + \frac{1}{2}s_1 - 1.5x_2
+\]</span></p>
+<p><span class="math display">\[
+5 / 0.5 = 10\\
+3 / 1.5 = 2
+\]</span>
+Най-много можем да увеличим <span class="math inline">\(x_2\)</span> до 2 без да нарушим някое от ограниченията.</p>
+<p><span class="math display">\[
+x_1 = 4, x_2 = 2, s_1 = 0, s_2 = 0 
+\]</span></p>
+<p><span class="math display">\[
+x_1 = 5 - \frac{1}{2}s_1 - \frac{1}{2}x_2\\
+x_2 = \frac{3}{1.5} + \frac{1}{2\cdot 1.5}s_1 - \frac{1}{1.5}s_2
+\]</span>
+<span class="math display">\[
+x_1 = 5 - \frac{1}{2}s_1 - \frac{1}{2}\left(2 + \frac{1}{3}s_1 - \frac{1}{1.5}s_2\right)\\
+x_2 = 2 + \frac{1}{3}s_1 - \frac{1}{1.5}s_2
+\]</span></p>
+<p><span class="math display">\[
+x_1 = 4 - 0.66s_1 + \frac{1}{3}s_2\\
+x_2 = 2 + \frac{1}{3}s_1 - \frac{1}{1.5}s_2
+\]</span>
+Изразяваме целевата функция само с нулеви променливи:
+<span class="math display">\[
+z = 25 - \frac{5}{2}s_1 + 2.5\left(\frac{1}{3}s_1 - \frac{1}{1.5}s_2\right)\\
+z = 30 - 1.66s_1 - 1.66s_2
+\]</span></p>
+<p>Решението е оптимално, защото няма нулеви променливи с положителен коефициент в целевата функция.</p>
 
 </div>
 </div>
