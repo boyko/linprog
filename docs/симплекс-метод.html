@@ -176,6 +176,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="симплекс-метод.html"><a href="симплекс-метод.html#каноничен-вид"><i class="fa fa-check"></i><b>3.1</b> Каноничен вид</a></li>
 <li class="chapter" data-level="3.2" data-path="симплекс-метод.html"><a href="симплекс-метод.html#симплекс-алгоритъм-1"><i class="fa fa-check"></i><b>3.2</b> Симплекс алгоритъм (1)</a></li>
+<li class="chapter" data-level="3.3" data-path="симплекс-метод.html"><a href="симплекс-метод.html#симплекс-алгоритъм-2"><i class="fa fa-check"></i><b>3.3</b> Симплекс алгоритъм (2)</a></li>
+<li class="chapter" data-level="3.4" data-path="симплекс-метод.html"><a href="симплекс-метод.html#симплекс-алгоритъм-3"><i class="fa fa-check"></i><b>3.4</b> Симплекс алгоритъм (3)</a></li>
+<li class="chapter" data-level="3.5" data-path="симплекс-метод.html"><a href="симплекс-метод.html#симплекс-алгоритъм-4"><i class="fa fa-check"></i><b>3.5</b> Симплекс алгоритъм (4)</a></li>
+<li class="chapter" data-level="3.6" data-path="симплекс-метод.html"><a href="симплекс-метод.html#симплекс-алгоритъм-5"><i class="fa fa-check"></i><b>3.6</b> Симплекс алгоритъм (5)</a></li>
+<li class="chapter" data-level="3.7" data-path="симплекс-метод.html"><a href="симплекс-метод.html#симплекс-алгоритъм-6"><i class="fa fa-check"></i><b>3.7</b> Симплекс алгоритъм (6)</a></li>
+<li class="chapter" data-level="3.8" data-path="симплекс-метод.html"><a href="симплекс-метод.html#симплекс-алгоритъм-6-1"><i class="fa fa-check"></i><b>3.8</b> Симплекс алгоритъм (6)</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org" target="blank">Изготвено с bookdown</a></li>
@@ -432,6 +438,61 @@ z = 25 - \frac{5}{2}s_1 + 2.5\left(\frac{1}{3}s_1 - \frac{1}{1.5}s_2\right)\\
 z = 30 - 1.66s_1 - 1.66s_2
 \]</span></p>
 <p>Решението е оптимално, защото няма нулеви променливи с положителен коефициент в целевата функция.</p>
+</div>
+<div id="симплекс-алгоритъм-2" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Симплекс алгоритъм (2)</h2>
+<p><span class="math display">\[
+\max Z = 6x_1 + 4x_2\\
+\begin{aligned}
+x_1 + 2x_2 &amp; \leq 16\\
+ 3x_1 + 2x_2 &amp; \leq 24\\
+x_, x_2  \geq 0
+\end{aligned}
+\]</span></p>
+</div>
+<div id="симплекс-алгоритъм-3" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Симплекс алгоритъм (3)</h2>
+<p><span class="math display">\[
+\max Z = 5 x_1 + 2x_2 + 7x_3 +x_4 - x_6\\
+-x_2 + x_3 + x_4 - 6x_5 = 5\\
+x_1 + x_2 + x_4 + x_5 - x_6 = 3\\
+x_j \geq 0, j = 1,\ldots,6
+\]</span></p>
+</div>
+<div id="симплекс-алгоритъм-4" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Симплекс алгоритъм (4)</h2>
+<p><span class="math display">\[
+\min Z = 2x_1 + 3x_2 - 3x_3\\
+-2x_1 - x_2 \leq 3\\
+x_1 - x_3 = 1\\
+3x_1 + x_3 \leq 4\\
+x_j \geq 0, j = 1\ldots,3
+\]</span></p>
+</div>
+<div id="симплекс-алгоритъм-5" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Симплекс алгоритъм (5)</h2>
+<p><span class="math display">\[
+\min Z = -5x_1 + 2x_2\\
+x_1 - x_2 \geq 2\\
+x_1 - 2x_2 \geq 0\\
+2x_1 - x_2 \leq 1\\
+x_1 \geq 0
+\]</span></p>
+</div>
+<div id="симплекс-алгоритъм-6" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Симплекс алгоритъм (6)</h2>
+<p><span class="math display">\[
+\max Z = 2x_1 + 16x_2\\
+x_1 - 2x_2 \geq -4\\
+2x_1 - x_2 \leq 6\\
+-x_1 - 8x_2 = 8\\
+x_1, x_2 \geq 0
+\]</span></p>
+</div>
+<div id="симплекс-алгоритъм-6-1" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Симплекс алгоритъм (6)</h2>
+<p>$$</p>
+<p>$$</p>
 
 </div>
 </div>
