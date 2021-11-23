@@ -448,6 +448,80 @@ x_1 + 2x_2 &amp; \leq 16\\
 x_, x_2  \geq 0
 \end{aligned}
 \]</span></p>
+<p><span class="math display">\[
+x_1: \text{ литри светла бира}\\
+x_2: \text{ литри тъмна бира}\\
+\max Z = 6x_1 + 4x_2 \quad (\text{лв.})\\
+\begin{aligned}
+1x_1 + 2x_2 + s_1 &amp; = 16 \text{ Хмел}\\
+ 3x_1 + 2x_2 + s_2 &amp; = 24 \text{ Малц} \\
+x_1, x_2, s_1, s_2  \geq 0
+\end{aligned}
+\]</span></p>
+<ol style="list-style-type: decimal">
+<li>Първоначално решение:</li>
+</ol>
+<p><span class="math display">\[
+x_1 = 0\\
+x_2 = 0\\
+s_1 = 16\\
+s_2 = 24
+\]</span></p>
+<p>В следващото решение на системата <span class="math inline">\(x_1 &gt; 0\)</span>,
+<span class="math inline">\(x_2 = 0\)</span>, <span class="math inline">\(s_1 = ??, s_2 = ??\)</span>.</p>
+<p><span class="math display">\[
+x_1 + s_1 = 16 \\
+3x_1 + s_2 = 24 \\
+\]</span></p>
+<p><span class="math display">\[
+1x_1 + 2x_2 + s_1 = 16 \\
+1x_1 + \frac{2}{3}x_2 + \frac{1}{3}s_2 = 8 \\
+\]</span></p>
+<p>Следващото решение е:</p>
+<p><span class="math display">\[
+x_1 = 8 \\
+x_2 = 0 \\
+s_1 = 8 \\
+s_2 = 0 \\
+\]</span>
+<span class="math display">\[
+\frac{4}{3}x_2 + s_1 - \frac{1}{3}s_2 = 8\\
+x_1 + \frac{2}{3}x_2 + \frac{1}{3}s_2 = 8
+\]</span>
+<span class="math display">\[
+\frac{4}{3}x_2 + s_1  = 8\\
+x_1 + \frac{2}{3}x_2 = 8
+\]</span></p>
+<p><span class="math display">\[
+x_1 = 8\\
+x_2 = 0
+\]</span></p>
+<p><span class="math display">\[
+1x_1 + 2x_2 + s_1 = 16 \text{ Хмел} \implies\\
+1\cdot 8 + 2\cdot 0 + s_1 = 16\\
+8 + s_1 = 16\\
+s_1 = 8
+\]</span></p>
+<p>В първото решение на системата уравнения на ограниченията.</p>
+<p><span class="math inline">\(s_1 = 16\)</span>, <span class="math inline">\(s_2 = 24\)</span>, <span class="math inline">\(x_1 = 0\)</span>, <span class="math inline">\(x_2 = 0\)</span>.</p>
+<p>Ако увеличим <span class="math inline">\(x_1\)</span> от нула на едно: какво трябва да стане
+с <span class="math inline">\(s_1\)</span>, за да се запази първото уравнение (Хмел).</p>
+<p><span class="math display">\[
+s_2 = 24 - 3\cdot 16 &lt; 0 \implies x_1 = 16 \text{ не е допустимо решение}
+\]</span></p>
+<p><span class="math display">\[
+x_1 + 2x_2 + s_1 + 0\cdot s_2 = 16\\
+x_1 + \frac{2}{3}x_2 + 0\cdot s_1 + \frac{1}{3}s_2 = 8
+\]</span></p>
+<p><span class="math display">\[
+\frac{4}{3} x_2 + s_1 - \frac{1}{3}s_2 = 8\\
+x_1 + \frac{2}{3}x_2 + \frac{1}{3}s_2 = 8
+\]</span>
+тъй като в момента <span class="math inline">\(x_2 = 0\)</span> и <span class="math inline">\(s_2 = 0\)</span>.</p>
+<p><span class="math display">\[
+s_1 = 8\\
+x_1 = 8
+\]</span></p>
 </div>
 <div id="симплекс-алгоритъм-3" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Симплекс алгоритъм (3)</h2>
